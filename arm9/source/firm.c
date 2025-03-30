@@ -197,7 +197,7 @@ u32 loadNintendoFirm(FirmwareType *firmType, FirmwareSource nandType, bool loadF
         else storageLoadError = true;
     }
     // If all attempts failed, panic.
-    if(ctrNandError && storageLoadError) error("Impossible de monter CTRNAND ou de charger le CTRNAND FIRM.\nVeuillez utiliser un périphérique externe.");
+    if(ctrNandError && storageLoadError) error("Impossible de monter la CTRNAND ou de charger le CTRNAND FIRM.\nVeuillez utiliser un périphérique externe.");
 
     //Check that the FIRM is right for the console from the Arm9 section address
     bool isO3dsFirm = firm->section[3].offset == 0 && firm->section[2].address == (u8 *)0x8006800;
@@ -284,7 +284,7 @@ void loadHomebrewFirm(u32 pressed)
     u32 maxPayloadSize = (u32)((u8 *)0x27FFE000 - (u8 *)firm),
         payloadSize = fileRead(firm, path, maxPayloadSize);
 
-    if(payloadSize <= 0x200 || !checkFirm(payloadSize)) error("Le payload n'est pas valide ou corrompue.");
+    if(payloadSize <= 0x200 || !checkFirm(payloadSize)) error("Payload invalide ou corrompu.");
 
     char absPath[24 + 255];
 
@@ -375,7 +375,7 @@ typedef struct CopyKipResult {
 // Copy a KIP, decompressing it in place if necessary (TwlBg)
 static CopyKipResult copyKip(u8 *dst, const u8 *src, u32 maxSize, bool decompress)
 {
-    const char *extModuleSizeError = "Les modules du FIRM externes sont trop grands.";
+    const char *extModuleSizeError = "Les modules externes du FIRM sont trop grands.";
     CopyKipResult res = { 0 };
     Cxi *dstCxi = (Cxi *)dst;
     const Cxi *srcCxi = (const Cxi *)src;
@@ -396,7 +396,7 @@ static CopyKipResult copyKip(u8 *dst, const u8 *src, u32 maxSize, bool decompres
     u8 *codeAddr = (u8 *)exefs + sizeof(ExeFsHeader) + fh->offset;
 
     if (memcmp(fh->name, ".code\0\0\0", 8) != 0 || fh->offset != 0 || exefs->fileHeaders[1].size != 0)
-        error("L'un des modules du FIRM externes a une disposition non valide.");
+        error("L'un des modules externes du FIRM a une disposition invalide.");
 
     // If it's already decompressed or we don't need to, there is not much left to do
     if (!decompress || !isCompressed)
@@ -482,7 +482,7 @@ static void mergeSection0(FirmwareType firmType, u32 firmVersion, bool loadFromS
 
     //3) Read or copy the modules
     u8 *dst = firm->section[0].address;
-    const char *extModuleSizeError = "Les modules du FIRM externe sont trop grands.";
+    const char *extModuleSizeError = "Les modules externes du FIRM sont trop grands.";
     // SAFE_FIRM only for N3DS and only if ENABLESAFEFIRMROSALINA is on
     u32 maxModuleSize = !isLgyFirm ? 0x80000 : 0x600000;
     u32 dstModuleSize = 0;
