@@ -107,28 +107,28 @@ static size_t LumaConfig_SaveLumaIniConfigToStr(char *out, const CfgData *cfg)
     bool isRelease = (bool)outInfo;
 
     switch (MULTICONFIG(SPLASH)) {
-        default: case 0: splashPosStr = "off"; break;
-        case 1: splashPosStr = "before payloads"; break;
-        case 2: splashPosStr = "after payloads"; break;
+        default: case 0: splashPosStr = "désactivé"; break;
+        case 1: splashPosStr = "avant les payloads"; break;
+        case 2: splashPosStr = "après les payloads"; break;
     }
 
     switch (MULTICONFIG(NEWCPU)) {
-        default: case 0: n3dsCpuStr = "off"; break;
-        case 1: n3dsCpuStr = "clock"; break;
+        default: case 0: n3dsCpuStr = "désactivé"; break;
+        case 1: n3dsCpuStr = "horloge"; break;
         case 2: n3dsCpuStr = "l2"; break;
-        case 3: n3dsCpuStr = "clock+l2"; break;
+        case 3: n3dsCpuStr = "horloge+l2"; break;
     }
 
     switch (MULTICONFIG(AUTOBOOTMODE)) {
-        default: case 0: autobootModeStr = "off"; break;
+        default: case 0: autobootModeStr = "désactivé"; break;
         case 1: autobootModeStr = "3ds"; break;
         case 2: autobootModeStr = "dsi"; break;
     }
 
     switch (MULTICONFIG(FORCEAUDIOOUTPUT)) {
-        default: case 0: forceAudioOutputStr = "off"; break;
-        case 1: forceAudioOutputStr = "headphones"; break;
-        case 2: forceAudioOutputStr = "speakers"; break;
+        default: case 0: forceAudioOutputStr = "désactivé"; break;
+        case 1: forceAudioOutputStr = "écouteurs"; break;
+        case 2: forceAudioOutputStr = "haut-parleurs"; break;
     }
 
     if (GET_VERSION_REVISION(version) != 0) {
