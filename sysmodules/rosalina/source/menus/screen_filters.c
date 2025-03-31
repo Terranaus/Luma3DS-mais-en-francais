@@ -150,7 +150,7 @@ static void ScreenFiltersMenu_UpdateEntries(void)
 {
     if (topScreenFilter.colorCurveCorrection == 0)
     {
-        screenFiltersMenu.items[10].title = "[IPS recommandé] Améliorer les couleurs de l'écran supérieur";
+        screenFiltersMenu.items[10].title = "[IPS recommandé] Améliorer couleurs écran sup.";
         screenFiltersMenu.items[10].method = &ScreenFiltersMenu_SetTopScreenSrgbColorCurve;
     }
     else
@@ -161,7 +161,7 @@ static void ScreenFiltersMenu_UpdateEntries(void)
 
     if (bottomScreenFilter.colorCurveCorrection == 0)
     {
-        screenFiltersMenu.items[11].title = "[IPS recommandé] Améliorer les couleurs de l'écran inférieur";
+        screenFiltersMenu.items[11].title = "[IPS recommandé] Améliorer couleurs écran inf.";
         screenFiltersMenu.items[11].method = &ScreenFiltersMenu_SetBottomScreenSrgbColorCurve;
     }
     else
@@ -194,8 +194,8 @@ Menu screenFiltersMenu = {
         { "[2300K] Incandescent chaud", METHOD, .method = &ScreenFiltersMenu_SetWarmIncandescent },
         { "[1900K] Bougie", METHOD, .method = &ScreenFiltersMenu_SetCandle },
         { "[1200K] Braise", METHOD, .method = &ScreenFiltersMenu_SetEmber },
-        { "[IPS recommandé] Améliorer les couleurs de l'écran supérieur", METHOD, .method = &ScreenFiltersMenu_SetTopScreenSrgbColorCurve },
-        { "[IPS recommandé] Améliorer les couleurs de l'écran inférieur", METHOD, .method = &ScreenFiltersMenu_SetTopScreenSrgbColorCurve },
+        { "[IPS recommandé] Améliorer couleurs écran sup.", METHOD, .method = &ScreenFiltersMenu_SetTopScreenSrgbColorCurve },
+        { "[IPS recommandé] Améliorer couleurs écran inf.", METHOD, .method = &ScreenFiltersMenu_SetTopScreenSrgbColorCurve },
         { "Configuration avancée...", METHOD, .method = &ScreenFiltersMenu_AdvancedConfiguration },
         {},
     }
@@ -397,7 +397,7 @@ static u32 ScreenFiltersMenu_AdvancedConfigurationHelper(const ScreenFilter *fil
     posY = Draw_DrawFormattedString(30, posY, COLOR_WHITE, "Luminosité :  %13s    \n", buf);
 
     Draw_DrawCharacter(10, posY, COLOR_TITLE, pos == offset++ ? '>' : ' ');
-    posY = Draw_DrawFormattedString(30, posY, COLOR_WHITE, "Inverser:      %13s    \n", filter->invert ? "vrai" : "faux");
+    posY = Draw_DrawFormattedString(30, posY, COLOR_WHITE, "Permuter :      %13s    \n", filter->invert ? "true" : "false");
 
     return posY;
 }
@@ -419,9 +419,9 @@ void ScreenFiltersMenu_AdvancedConfiguration(void)
         Draw_DrawString(10, 10, COLOR_TITLE, "Menu des filtres d'écran");
 
         posY = 30;
-        posY = Draw_DrawString(10, posY, COLOR_WHITE, "Utilisez gauche/droite pour augmenter/diminuer la valeur sélectionné.\n");
-        posY = Draw_DrawString(10, posY, COLOR_WHITE, "Maintenez R pour modifier la valeur plus rapidement.\n");
-        posY = Draw_DrawFormattedString(10, posY, COLOR_WHITE, "Mettre à jour les deux écrans : %s (L pour basculer)   \n", sync ? "oui" : "non") + SPACING_Y;
+        posY = Draw_DrawString(10, posY, COLOR_WHITE, "Utilisez gauche/droite pr augm./diminuer la val. choisie.\n");
+        posY = Draw_DrawString(10, posY, COLOR_WHITE, "Maintenez R pour changer la valeur plus vite.\n");
+        posY = Draw_DrawFormattedString(10, posY, COLOR_WHITE, "Mettre à jour les deux écrans : %s (L pour changer)   \n", sync ? "oui" : "non") + SPACING_Y;
 
         posY = Draw_DrawString(10, posY, COLOR_WHITE, "Écran supérieur :\n");
         posY = ScreenFiltersMenu_AdvancedConfigurationHelper(&topScreenFilter, 0, pos, posY) + SPACING_Y;
