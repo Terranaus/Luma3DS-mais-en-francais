@@ -175,7 +175,7 @@ static int ERRF_FormatGenericInfo(char *out, const ERRF_FatalErrInfo *info)
         svcGetProcessInfo((s64 *)&titleId, processHandle, 0x10001);
         svcCloseHandle(processHandle);
         out += sprintf(out, "Nom du processus :      %s\n", name);
-        out += sprintf(out, "Title ID du processus : %016llx\n", titleId);
+        out += sprintf(out, "ID de Titre du processus : %016llx\n", titleId);
     }
 
     out += sprintf(out, "\n");
@@ -206,7 +206,7 @@ static int ERRF_FormatError(char *out, const ERRF_FatalErrInfo *info, bool isLog
         case ERRF_ERRTYPE_CARD_REMOVED:
         {
             const char *medium = R_MODULE(info->resCode) == RM_SDMC ? "carte SD" : "cartouche";
-            out += sprintf(out, "Le %s a été retiré.\n", medium);
+            out += sprintf(out, "La %s a été retirée.\n", medium);
             break;
         }
         case ERRF_ERRTYPE_GENERIC:
@@ -249,7 +249,7 @@ static void ERRF_DisplayError(ERRF_FatalErrInfo *info)
     posY = posY < 30 ? 30 : posY;
 
     posY = Draw_DrawString(10, posY, COLOR_WHITE, buf);
-    posY = Draw_DrawString(10, posY + SPACING_Y, COLOR_WHITE, "Appuyez sur n'importe quel bouton pour redémarrer.");
+    posY = Draw_DrawString(10, posY + SPACING_Y, COLOR_WHITE, "Appuyez sur un bouton pour redémarrer.");
 
     Draw_FlushFramebuffer();
     Draw_Unlock();
