@@ -45,16 +45,16 @@
 Menu rosalinaMenu = {
     "Menu Harmonie",
     {
-        { "Prendre une capture d'écran", METHOD, .method = &RosalinaMenu_TakeScreenshot },
+        { "Capture d'écran", METHOD, .method = &RosalinaMenu_TakeScreenshot },
         { "Filtres d'écran...", MENU, .menu = &screenFiltersMenu },
-        { "Cheats...", METHOD, .method = &RosalinaMenu_Cheats },
+        { "Codes de triche...", METHOD, .method = &RosalinaMenu_Cheats },
         { "", METHOD, .method = PluginLoader__MenuCallback},
         { "Menu New 3DS...", MENU, .menu = &N3DSMenu, .visibility = &menuCheckN3ds },
         { "Liste des processus", METHOD, .method = &RosalinaMenu_ProcessList },
-        { "Options du débogueur...", MENU, .menu = &debuggerMenu },
+        { "Options du déboggeur...", MENU, .menu = &debuggerMenu },
         { "Configuration du système...", MENU, .menu = &sysconfigMenu },
         { "Options diverses...", MENU, .menu = &miscellaneousMenu },
-        { "Enregistrer les paramètres", METHOD, .method = &RosalinaMenu_SaveSettings },
+        { "Enregistrer les changements", METHOD, .method = &RosalinaMenu_SaveSettings },
         { "Éteindre/redémarrer", METHOD, .method = &RosalinaMenu_PowerOffOrReboot },
         { "Informations système", METHOD, .method = &RosalinaMenu_ShowSystemInfo },
         { "Crédits", METHOD, .method = &RosalinaMenu_ShowCredits },
@@ -152,7 +152,7 @@ void RosalinaMenu_ShowSystemInfo(void)
         {
             posY = Draw_DrawFormattedString(10, posY, COLOR_WHITE, "Version MCU FW :             %lu.%lu\n", GET_VERSION_MAJOR(mcuFwVersion), GET_VERSION_MINOR(mcuFwVersion));
             posY = Draw_DrawFormattedString(10, posY, COLOR_WHITE, "Fournisseur PMIC :           %hhu\n", mcuInfoTable[1]);
-            posY = Draw_DrawFormattedString(10, posY, COLOR_WHITE, "Fournisseur de le Batterie : %hhu\n\n", mcuInfoTable[2]);
+            posY = Draw_DrawFormattedString(10, posY, COLOR_WHITE, "Fournisseur batterie : %hhu\n\n", mcuInfoTable[2]);
         }
 
         Draw_FlushFramebuffer();
@@ -225,7 +225,7 @@ void RosalinaMenu_ShowCredits(void)
     do
     {
         Draw_Lock();
-        Draw_DrawString(10, 10, COLOR_TITLE, "Harmonie -- Luma3DS crédits");
+        Draw_DrawString(10, 10, COLOR_TITLE, "Harmonie -- Crédits de Luma3DS");
 
         u32 posY = Draw_DrawString(10, 30, COLOR_WHITE, "Luma3DS (c) 2016-2025 AuroraWright, TuxSH") + SPACING_Y;
 
@@ -238,10 +238,10 @@ void RosalinaMenu_ShowCredits(void)
 
         Draw_DrawString(10, posY, COLOR_WHITE,
             (
-                "Remerciement spécials à :\n"
+                "Remerciements spéciaux à :\n"
                 "  fincs, WinterMute, mtheall, piepie62,\n"
                 "  les contributeurs de Luma3DS, les contributeurs de libctru,\n"
-                "  toutes autres personnes ayant participé d'une quelconque façon au projet"
+                "  toute autre personne ayant participé d'une quelconque façon au projet"
             ));
 
         Draw_FlushFramebuffer();
