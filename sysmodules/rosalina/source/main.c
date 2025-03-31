@@ -107,7 +107,7 @@ void initSystem(void)
         svcBreak(USERBREAK_PANIC);
 
     miscellaneousMenu.items[0].title = Luma_SharedConfig->selected_hbldr_3dsx_tid == HBLDR_DEFAULT_3DSX_TID ?
-        "Changez le titre de l'application sur le Homebrew actuel." :
+        "Passer au titre hb. sur l'appli actuelle" :
         "Changer le titre Homebrew en " HBLDR_DEFAULT_3DSX_TITLE_NAME;
 
     // **** DO NOT init services that don't come from KIPs here ****
