@@ -69,9 +69,9 @@ Menu miscellaneousMenu = {
     {
         { "Changez le titre hb. sur l'application actuelle.", METHOD, .method = &MiscellaneousMenu_SwitchBoot3dsxTargetTitle },
         { "Changer la combinaison de menus", METHOD, .method = &MiscellaneousMenu_ChangeMenuCombo },
-        { "Démarrer la redirection d’entrée", METHOD, .method = &MiscellaneousMenu_InputRedirection },
-        { "Mettre à jour l'heure et la date via NTP", METHOD, .method = &MiscellaneousMenu_UpdateTimeDateNtp },
-        { "Annuler le décalage horaire de l'utilisateur", METHOD, .method = &MiscellaneousMenu_NullifyUserTimeOffset },
+        { "D\u00E9marrer la redirection d’entr\u00E9e", METHOD, .method = &MiscellaneousMenu_InputRedirection },
+        { "Mettre \u00E0 jour l'heure et la date via NTP", METHOD, .method = &MiscellaneousMenu_UpdateTimeDateNtp },
+        { "Annuler le d\u00E9calage horaire de l'utilisateur", METHOD, .method = &MiscellaneousMenu_NullifyUserTimeOffset },
         { "Dump le firmware DSP", METHOD, .method = &MiscellaneousMenu_DumpDspFirm },
         {},
     }
@@ -105,7 +105,7 @@ void MiscellaneousMenu_SwitchBoot3dsxTargetTitle(void)
         else
         {
             res = -1;
-            strcpy(failureReason, "aucun processus approprié trouvé");
+            strcpy(failureReason, "aucun processus appropri\u00E9 trouv\u00E9");
         }
     }
     else
@@ -141,9 +141,9 @@ void MiscellaneousMenu_SwitchBoot3dsxTargetTitle(void)
         Draw_DrawString(10, 10, COLOR_TITLE, "Menu d'options diverses");
 
         if(R_SUCCEEDED(res))
-            Draw_DrawString(10, 30, COLOR_WHITE, "Opération réussie.");
+            Draw_DrawString(10, 30, COLOR_WHITE, "Op\u00E9ration r\u00E9ussie.");
         else
-            Draw_DrawFormattedString(10, 30, COLOR_WHITE, "L'opération (%s) a échoué.", failureReason);
+            Draw_DrawFormattedString(10, 30, COLOR_WHITE, "L'op\u00E9ration (%s) a \u00E9chou\u00E9.", failureReason);
 
         Draw_FlushFramebuffer();
         Draw_Unlock();
@@ -180,7 +180,7 @@ void MiscellaneousMenu_ChangeMenuCombo(void)
         posY = Draw_DrawFormattedString(10, 30, COLOR_WHITE, "Le combo du menu actuel est :  %s", comboStrOrig);
         posY = Draw_DrawFormattedString(10, posY + SPACING_Y, COLOR_WHITE, "Veuillez saisir le nouveau combo : %s", comboStr) + SPACING_Y;
 
-        posY = Draw_DrawString(10, posY + SPACING_Y, COLOR_WHITE, "Combo du menu modifié avec succès.");
+        posY = Draw_DrawString(10, posY + SPACING_Y, COLOR_WHITE, "Combo du menu modifi\u00E9 avec succ\u00E8s.");
 
         Draw_FlushFramebuffer();
         Draw_Unlock();
@@ -203,7 +203,7 @@ void MiscellaneousMenu_InputRedirection(void)
         if(res != 0)
             sprintf(buf, "Impossible d'arrêter InputRedirection (0x%08lx).", (u32)res);
         else
-            miscellaneousMenu.items[2].title = "Démarrer InputRedirection";
+            miscellaneousMenu.items[2].title = "D\u00E9marrer InputRedirection";
     }
     else
     {
@@ -234,10 +234,10 @@ void MiscellaneousMenu_InputRedirection(void)
         Draw_DrawString(10, 10, COLOR_TITLE, "Menu d'options diverses");
 
         if(!wasEnabled && cantStart)
-            Draw_DrawString(10, 30, COLOR_WHITE, "Impossible de démarrer la redirection d'entrée avant que le système\nait terminé le chargement.");
+            Draw_DrawString(10, 30, COLOR_WHITE, "Impossible de d\u00E9marrer la redirection d'entr\u00E9e avant que le syst\u00E8me\nait termin\u00E9 le chargement.");
         else if(!wasEnabled)
         {
-            Draw_DrawString(10, 30, COLOR_WHITE, "Démarrage de InputRedirection...");
+            Draw_DrawString(10, 30, COLOR_WHITE, "D\u00E9marrage de InputRedirection...");
             if(!done)
             {
                 res = InputRedirection_DoOrUndoPatches();
@@ -262,7 +262,7 @@ void MiscellaneousMenu_InputRedirection(void)
                 }
 
                 if(res != 0)
-                    sprintf(buf, "Démarrage de InputRedirection... échec (0x%08lx).", (u32)res);
+                    sprintf(buf, "D\u00E9marrage de InputRedirection... \u00E9chec (0x%08lx).", (u32)res);
                 else
                     miscellaneousMenu.items[2].title = "Arrêter InputRedirection";
 
@@ -270,7 +270,7 @@ void MiscellaneousMenu_InputRedirection(void)
             }
 
             if(res == 0)
-                Draw_DrawString(10, 30, COLOR_WHITE, "Démarrage d'InputRedirection... OK.");
+                Draw_DrawString(10, 30, COLOR_WHITE, "D\u00E9marrage d'InputRedirection... OK.");
             else
                 Draw_DrawString(10, 30, COLOR_WHITE, buf);
         }
@@ -279,16 +279,16 @@ void MiscellaneousMenu_InputRedirection(void)
             if(res == 0)
             {
                 u32 posY = 30;
-                posY = Draw_DrawString(10, posY, COLOR_WHITE, "InputRedirection s'est arrêté avec succès.\n\n");
+                posY = Draw_DrawString(10, posY, COLOR_WHITE, "InputRedirection s'est arrêt\u00E9 avec succ\u00E8s.\n\n");
                 if (isN3DS)
                 {
                     posY = Draw_DrawString(
                         10,
                         posY,
                         COLOR_WHITE,
-                        "Cela peut entraîner la répétition d'une pression\n"
+                        "Cela peut entraîner la r\u00E9p\u00E9tition d'une pression\n"
                         "sur une touche dans le Menu Home sans raison.\n\n"
-                        "Il suffit d'appuyer sur ZL/ZR sur la console pour\nrésoudre ce problème.\n"
+                        "Il suffit d'appuyer sur ZL/ZR sur la console pour\nr\u00E9soudre ce probl\u00E8me.\n"
                     );
                 }
             }
@@ -334,8 +334,8 @@ void MiscellaneousMenu_UpdateTimeDateNtp(void)
 
         absOffset = utcOffset - 12;
         absOffset = absOffset < 0 ? -absOffset : absOffset;
-        posY = Draw_DrawFormattedString(10, 30, COLOR_WHITE, "Décalage UTC actuel :  %c%02d%02d", utcOffset < 12 ? '-' : '+', absOffset, utcOffsetMinute);
-        posY = Draw_DrawFormattedString(10, posY + SPACING_Y, COLOR_WHITE, "Utilisez le DPAD Gauche/Droite pour modifier le décalage horaire.\nUtilisez DPAD Haut/Bas pour modifier le décalage des minutes.\nAppuyez sur A lorsque vous avez terminé.") + SPACING_Y;
+        posY = Draw_DrawFormattedString(10, 30, COLOR_WHITE, "D\u00E9calage UTC actuel :  %c%02d%02d", utcOffset < 12 ? '-' : '+', absOffset, utcOffsetMinute);
+        posY = Draw_DrawFormattedString(10, posY + SPACING_Y, COLOR_WHITE, "Utilisez le DPAD Gauche/Droite pour modifier le d\u00E9calage horaire.\nUtilisez DPAD Haut/Bas pour modifier le d\u00E9calage des minutes.\nAppuyez sur A lorsque vous avez termin\u00E9.") + SPACING_Y;
 
         Draw_FlushFramebuffer();
         Draw_Unlock();
@@ -379,13 +379,13 @@ void MiscellaneousMenu_UpdateTimeDateNtp(void)
 
         absOffset = utcOffset;
         absOffset = absOffset < 0 ? -absOffset : absOffset;
-        Draw_DrawFormattedString(10, 30, COLOR_WHITE, "Décalage UTC actuel :  %c%02d", utcOffset < 0 ? '-' : '+', absOffset);
+        Draw_DrawFormattedString(10, 30, COLOR_WHITE, "D\u00E9calage UTC actuel :  %c%02d", utcOffset < 0 ? '-' : '+', absOffset);
         if (cantStart)
-            Draw_DrawFormattedString(10, posY + 2 * SPACING_Y, COLOR_WHITE, "Impossible de synchroniser l'heure/la date avant que le\nsystème ait terminé le chargement.") + SPACING_Y;
+            Draw_DrawFormattedString(10, posY + 2 * SPACING_Y, COLOR_WHITE, "Impossible de synchroniser l'heure/la date avant que le\nsyst\u00E8me ait termin\u00E9 le chargement.") + SPACING_Y;
         else if (R_FAILED(res))
-            Draw_DrawFormattedString(10, posY + 2 * SPACING_Y, COLOR_WHITE, "L'opération (%08lx) a échoué.", (u32)res) + SPACING_Y;
+            Draw_DrawFormattedString(10, posY + 2 * SPACING_Y, COLOR_WHITE, "L'op\u00E9ration (%08lx) a \u00E9chou\u00E9.", (u32)res) + SPACING_Y;
         else
-            Draw_DrawFormattedString(10, posY + 2 * SPACING_Y, COLOR_WHITE, "Heure/date mise à jour avec succès.") + SPACING_Y;
+            Draw_DrawFormattedString(10, posY + 2 * SPACING_Y, COLOR_WHITE, "Heure/date mise \u00E0 jour avec succ\u00E8s.") + SPACING_Y;
 
         Draw_FlushFramebuffer();
         Draw_Unlock();
@@ -407,9 +407,9 @@ void MiscellaneousMenu_NullifyUserTimeOffset(void)
         Draw_Lock();
         Draw_DrawString(10, 10, COLOR_TITLE, "Menu d'options diverses");
         if(R_SUCCEEDED(res))
-            Draw_DrawString(10, 30, COLOR_WHITE, "Opération réussie.\n\nVeuillez redémarrer pour finaliser les modifications.");
+            Draw_DrawString(10, 30, COLOR_WHITE, "Op\u00E9ration r\u00E9ussie.\n\nVeuillez red\u00E9marrer pour finaliser les modifications.");
         else
-            Draw_DrawFormattedString(10, 30, COLOR_WHITE, "L'opération (0x%08lx) a échoué.", res);
+            Draw_DrawFormattedString(10, 30, COLOR_WHITE, "L'op\u00E9ration (0x%08lx) a \u00E9chou\u00E9.", res);
         Draw_FlushFramebuffer();
         Draw_Unlock();
     }
@@ -486,11 +486,11 @@ void MiscellaneousMenu_DumpDspFirm(void)
         Draw_Lock();
         Draw_DrawString(10, 10, COLOR_TITLE, "Menu d'options diverses");
         if(R_SUCCEEDED(res))
-            Draw_DrawString(10, 30, COLOR_WHITE, "DSP firm. écrit avec succès dans /3ds/dspfirm.cdc\nsur la carte SD.");
+            Draw_DrawString(10, 30, COLOR_WHITE, "DSP firm. \u00E9crit avec succ\u00E8s dans /3ds/dspfirm.cdc\nsur la carte SD.");
         else
             Draw_DrawFormattedString(
                 10, 30, COLOR_WHITE,
-                "L'opération (0x%08lx) a échoué.\n\nAssurez-vous que le Menu Home est en cours d’exécution\net que votre carte SD est insérée.",
+                "L'op\u00E9ration (0x%08lx) a \u00E9chou\u00E9.\n\nAssurez-vous que le Menu Home est en cours d’ex\u00E9cution\net que votre carte SD est ins\u00E9r\u00E9e.",
                 res
             );
         Draw_FlushFramebuffer();

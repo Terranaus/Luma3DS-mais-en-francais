@@ -43,8 +43,8 @@ Menu N3DSMenu = {
     {
         { "Activer le cache L2", METHOD, .method = &N3DSMenu_EnableDisableL2Cache },
         { clkRateBuf, METHOD, .method = &N3DSMenu_ChangeClockRate },
-        { "Désactiver temporairement 3D Super-Stable", METHOD, .method = &N3DSMenu_ToggleSs3d, .visibility = &N3DSMenu_CheckNotN2dsXl },
-        { "Tester les positions des barrières de parallaxe", METHOD, .method = &N3DSMenu_TestBarrierPositions, .visibility = &N3DSMenu_CheckNotN2dsXl },
+        { "D\u00E9sactiver temporairement 3D Super-Stable", METHOD, .method = &N3DSMenu_ToggleSs3d, .visibility = &N3DSMenu_CheckNotN2dsXl },
+        { "Tester les positions des barri\u00E8res de parallaxe", METHOD, .method = &N3DSMenu_TestBarrierPositions, .visibility = &N3DSMenu_CheckNotN2dsXl },
         { "Calibrage 3D Super-Stable", METHOD, .method = &N3DSMenu_Ss3dCalibration, .visibility = &N3DSMenu_CheckNotN2dsXl },
         {},
     }
@@ -66,8 +66,8 @@ void N3DSMenu_UpdateStatus(void)
     svcGetSystemInfo(&higherClkRate, 0x10001, 1);
     svcGetSystemInfo(&L2CacheEnabled, 0x10001, 2);
 
-    N3DSMenu.items[0].title = L2CacheEnabled ? "Désactiver le cache L2" : "Activer le cache L2";
-    sprintf(clkRateBuf, "Réglez la fréquence d'horloge sur %luMHz", clkRate != 268 ? 268 : (u32)higherClkRate);
+    N3DSMenu.items[0].title = L2CacheEnabled ? "D\u00E9sactiver le cache L2" : "Activer le cache L2";
+    sprintf(clkRateBuf, "R\u00E9glez la fr\u00E9quence d'horloge sur %luMHz", clkRate != 268 ? 268 : (u32)higherClkRate);
 
     if (N3DSMenu_CheckNotN2dsXl())
     {
@@ -84,7 +84,7 @@ void N3DSMenu_UpdateStatus(void)
         MenuItem *item = &N3DSMenu.items[2];
 
         if (lastUpdatedQtmStatus == QTM_STATUS_ENABLED)
-            item->title = "Désactiver temporairement la 3D Super-Stable";
+            item->title = "D\u00E9sactiver temporairement la 3D Super-Stable";
         else
             item->title = "Activer temporairement la 3D Super-Stable";
     }
@@ -141,12 +141,12 @@ void N3DSMenu_TestBarrierPositions(void)
         Draw_Lock();
 
         Draw_DrawString(10, 10, COLOR_TITLE, "Menu New 3DS");
-        u32 posY = Draw_DrawString(10, 30, COLOR_WHITE, "Utilisez gauche/droite pour ajuster la position de la barrière.\n\n");
-        posY = Draw_DrawString(10, posY, COLOR_WHITE, "Chaque position correspond à un mouvement oculaire horizontal de 5,2 mm\n(en supposant des conditions de visualisation idéales).\n\n");
-        posY = Draw_DrawString(10, posY, COLOR_WHITE, "Une fois que vous avez déterminé la position centrale idéale,\nvous pouvez l'utiliser dans le sous-menu d'étalonnage.\n\n");
-        posY = Draw_DrawString(10, posY, COLOR_WHITE, "Le comportement de réglage automatique de la barrière est\nrestauré à la sortie.\n\n");
+        u32 posY = Draw_DrawString(10, 30, COLOR_WHITE, "Utilisez gauche/droite pour ajuster la position de la barri\u00E8re.\n\n");
+        posY = Draw_DrawString(10, posY, COLOR_WHITE, "Chaque position correspond \u00E0 un mouvement oculaire horizontal de 5,2 mm\n(en supposant des conditions de visualisation id\u00E9ales).\n\n");
+        posY = Draw_DrawString(10, posY, COLOR_WHITE, "Une fois que vous avez d\u00E9termin\u00E9 la position centrale id\u00E9ale,\nvous pouvez l'utiliser dans le sous-menu d'\u00E9talonnage.\n\n");
+        posY = Draw_DrawString(10, posY, COLOR_WHITE, "Le comportement de r\u00E9glage automatique de la barri\u00E8re est\nrestaur\u00E9 \u00E0 la sortie.\n\n");
 
-        posY = Draw_DrawFormattedString(10, posY, COLOR_WHITE, "Position de la barrière : %2hhu\n", pos);
+        posY = Draw_DrawFormattedString(10, posY, COLOR_WHITE, "Position de la barri\u00E8re : %2hhu\n", pos);
 
         Draw_FlushFramebuffer();
         pressed = waitInputWithTimeout(1000);
@@ -214,24 +214,24 @@ void N3DSMenu_Ss3dCalibration(void)
         u32 posY = 30;
 
         if (trackingDisabled)
-            posY = Draw_DrawString(10, posY, COLOR_WHITE, "SS3D désactivé ou caméra en cours d'utilisation.\nAppuyez sur B pour quitter ce menu.\n");
+            posY = Draw_DrawString(10, posY, COLOR_WHITE, "SS3D d\u00E9sactiv\u00E9 ou cam\u00E9ra en cours d'utilisation.\nAppuyez sur B pour quitter ce menu.\n");
         else if (calReadFailed)
-            posY = Draw_DrawString(10, posY, COLOR_WHITE, "Échec de la lecture des données d'étalonnage.\nAppuyez sur B pour quitter ce menu.\n");
+            posY = Draw_DrawString(10, posY, COLOR_WHITE, "\u00C9chec de la lecture des donn\u00E9es d'\u00E9talonnage.\nAppuyez sur B pour quitter ce menu.\n");
         else
         {
             posY = Draw_DrawString(10, posY, COLOR_WHITE, "Droite/Gauche: +- 1\n");
             posY = Draw_DrawString(10, posY, COLOR_WHITE, "Haut/Bas:      +- 0.1\n");
             posY = Draw_DrawString(10, posY, COLOR_WHITE, "R/L:           +- 0.01\n");
-            posY = Draw_DrawString(10, posY, COLOR_WHITE, "A:             enregistrer dans la configuration système\n");
-            posY = Draw_DrawString(10, posY, COLOR_WHITE, "Y:             recharger le dernier étalonnage enregistré\n");
+            posY = Draw_DrawString(10, posY, COLOR_WHITE, "A:             enregistrer dans la configuration syst\u00E8me\n");
+            posY = Draw_DrawString(10, posY, COLOR_WHITE, "Y:             recharger le dernier \u00E9talonnage enregistr\u00E9\n");
             posY = Draw_DrawString(10, posY, COLOR_WHITE, "B:             quitter ce menu\n\n");
 
             char calStr[16];
             floatToString(calStr, lastQtmCal.centerBarrierPosition, 2, true);
-            posY = Draw_DrawFormattedString(10, posY, COLOR_WHITE, "Position centrale :                %-5s\n\n", calStr);
+            posY = Draw_DrawFormattedString(10, posY, COLOR_WHITE, "Position centrale :                %-5s\n\n", calStr);
 
-            posY = Draw_DrawFormattedString(10, posY, COLOR_WHITE, "Position actuelle de la barrière : %-2hhu\n", currentPos);
-            posY = Draw_DrawFormattedString(10, posY, COLOR_WHITE, "Distance oculaire actuelle :       %-2d cm\n", (int)roundf(qtmEstimateEyeToCameraDistance(&trackingData) / 10.0f));
+            posY = Draw_DrawFormattedString(10, posY, COLOR_WHITE, "Position actuelle de la barri\u00E8re : %-2hhu\n", currentPos);
+            posY = Draw_DrawFormattedString(10, posY, COLOR_WHITE, "Distance oculaire actuelle :       %-2d cm\n", (int)roundf(qtmEstimateEyeToCameraDistance(&trackingData) / 10.0f));
             posY = Draw_DrawFormattedString(10, posY, COLOR_WHITE, "Distance oculaire optimale :       %-2d cm\n", (int)roundf(lastQtmCal.viewingDistance / 10.0f));
         }
 

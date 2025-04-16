@@ -35,15 +35,15 @@
 #include "luminance.h"
 
 Menu sysconfigMenu = {
-    "Menu de configuration du système",
+    "Menu de configuration du syst\u00E8me",
     {
         { "Contrôler le volume", METHOD, .method=&SysConfigMenu_AdjustVolume},
         { "Contrôler la connexion sans fil", METHOD, .method = &SysConfigMenu_ControlWifi },
-        { "Activer/désactiver les LED", METHOD, .method = &SysConfigMenu_ToggleLEDs },
-        { "Activer/désactiver sans fil", METHOD, .method = &SysConfigMenu_ToggleWireless },
-        { "Activer/désactiver le bouton POWER", METHOD, .method=&SysConfigMenu_TogglePowerButton },
-        { "Activer/désactiver alim. empl. carte de jeu", METHOD, .method=&SysConfigMenu_ToggleCardIfPower},
-        { "Changer la luminosité des écrans", METHOD, .method = &SysConfigMenu_ChangeScreenBrightness },
+        { "Activer/d\u00E9sactiver les LED", METHOD, .method = &SysConfigMenu_ToggleLEDs },
+        { "Activer/d\u00E9sactiver sans fil", METHOD, .method = &SysConfigMenu_ToggleWireless },
+        { "Activer/d\u00E9sactiver le bouton POWER", METHOD, .method=&SysConfigMenu_TogglePowerButton },
+        { "Activer/d\u00E9sactiver alim. empl. carte de jeu", METHOD, .method=&SysConfigMenu_ToggleCardIfPower},
+        { "Changer la luminosit\u00E9 des \u00E9crans", METHOD, .method = &SysConfigMenu_ChangeScreenBrightness },
         {},
     }
 };
@@ -61,11 +61,11 @@ void SysConfigMenu_ToggleLEDs(void)
     do
     {
         Draw_Lock();
-        Draw_DrawString(10, 10, COLOR_TITLE, "Menu de configuration du système");
+        Draw_DrawString(10, 10, COLOR_TITLE, "Menu de configuration du syst\u00E8me");
         Draw_DrawString(10, 30, COLOR_WHITE, "Appuyez sur A pour changer, appuyez sur B pour annumer.");
         Draw_DrawString(10, 50, COLOR_RED, "ATTENTION :");
-        Draw_DrawString(10, 60, COLOR_WHITE, "  * Le mode veille réinitialise l'état des LED !");
-        Draw_DrawString(10, 70, COLOR_WHITE, "  * État des LED inchangeable si la batterie est faible !");
+        Draw_DrawString(10, 60, COLOR_WHITE, "  * Le mode veille r\u00E9initialise l'\u00E9tat des LED !");
+        Draw_DrawString(10, 70, COLOR_WHITE, "  * \u00C9tat des LED inchangeable si la batterie est faible !");
 
         Draw_FlushFramebuffer();
         Draw_Unlock();
@@ -99,7 +99,7 @@ void SysConfigMenu_ToggleWireless(void)
     do
     {
         Draw_Lock();
-        Draw_DrawString(10, 10, COLOR_TITLE, "Menu de configuration du système");
+        Draw_DrawString(10, 10, COLOR_TITLE, "Menu de configuration du syst\u00E8me");
         Draw_DrawString(10, 30, COLOR_WHITE, "Appuyez sur A pour changer, appuyez sur B pour annuler.");
 
         u8 wireless = (*(vu8 *)((0x10140000 | (1u << 31)) + 0x180));
@@ -145,7 +145,7 @@ void SysConfigMenu_UpdateStatus(bool control)
     }
     else
     {
-        item->title = "Désactiver la connexion sans fil forcée";
+        item->title = "D\u00E9sactiver la connexion sans fil forc\u00E9e";
         item->method = &SysConfigMenu_DisableForcedWifiConnection;
     }
 }
@@ -186,9 +186,9 @@ static bool SysConfigMenu_ForceWifiConnection(u32 slot)
     char infoString[80] = {0};
     u32 infoStringColor = forcedConnection ? COLOR_GREEN : COLOR_RED;
     if(forcedConnection)
-        sprintf(infoString, "Connexion forcée avec succès à : %s", ssid);
+        sprintf(infoString, "Connexion forc\u00E9e avec succ\u00E8s \u00E0 : %s", ssid);
     else
-       sprintf(infoString, "Échec de la connexion à l'emplacement %d", (int)slot + 1);
+       sprintf(infoString, "\u00C9chec de la connexion \u00E0 l'emplacement %d", (int)slot + 1);
 
     Draw_Lock();
     Draw_ClearFramebuffer();
@@ -198,7 +198,7 @@ static bool SysConfigMenu_ForceWifiConnection(u32 slot)
     do
     {
         Draw_Lock();
-        Draw_DrawString(10, 10, COLOR_TITLE, "Menu de configuration du système");
+        Draw_DrawString(10, 10, COLOR_TITLE, "Menu de configuration du syst\u00E8me");
         Draw_DrawString(10, 30, infoStringColor, infoString);
         Draw_DrawString(10, 40, COLOR_WHITE, "Appuyez sur B pour annuler.");
 
@@ -231,11 +231,11 @@ void SysConfigMenu_TogglePowerButton(void)
     do
     {
         Draw_Lock();
-        Draw_DrawString(10, 10, COLOR_TITLE, "Menu de configuration du système");
+        Draw_DrawString(10, 10, COLOR_TITLE, "Menu de configuration du syst\u00E8me");
         Draw_DrawString(10, 30, COLOR_WHITE, "Appuyez sur A pour basculer, appuyez sur B pour annuler.");
 
         Draw_DrawString(10, 50, COLOR_WHITE, "Statut actuel :");
-        Draw_DrawString(100, 50, (((mcuIRQMask & 0x00000001) == 0x00000001) ? COLOR_RED : COLOR_GREEN), (((mcuIRQMask & 0x00000001) == 0x00000001) ? " DÉSACTIVÉ" : " ACTIVÉ "));
+        Draw_DrawString(100, 50, (((mcuIRQMask & 0x00000001) == 0x00000001) ? COLOR_RED : COLOR_GREEN), (((mcuIRQMask & 0x00000001) == 0x00000001) ? " D\u00C9SACTIV\u00C9" : " ACTIV\u00C9 "));
 
         Draw_FlushFramebuffer();
         Draw_Unlock();
@@ -272,7 +272,7 @@ void SysConfigMenu_ControlWifi(void)
         if (R_SUCCEEDED(ACI_LoadNetworkSetting(i)))
             ACI_GetNetworkWirelessEssidSecuritySsid(ssids[i]);
         else
-            strcpy(ssids[i], "(non configuré)");
+            strcpy(ssids[i], "(non configur\u00E9)");
     }
     if (R_SUCCEEDED(resInit))
         acExit();
@@ -280,7 +280,7 @@ void SysConfigMenu_ControlWifi(void)
     do
     {
         Draw_Lock();
-        Draw_DrawString(10, 10, COLOR_TITLE, "Menu de configuration du système");
+        Draw_DrawString(10, 10, COLOR_TITLE, "Menu de configuration du syst\u00E8me");
         u32 posY = Draw_DrawString(10, 30, COLOR_WHITE, "Bouton A pour forcer une connexion, B pour annuler\n\n");
 
         for (u32 i = 0; i < 3; i++)
@@ -334,8 +334,8 @@ void SysConfigMenu_DisableForcedWifiConnection(void)
     do
     {
         Draw_Lock();
-        Draw_DrawString(10, 10, COLOR_TITLE, "Menu de configuration du système");
-        Draw_DrawString(10, 30, COLOR_WHITE, "Connexion forcée désactivée avec succès.\nRemarque : la connexion automatique peut rester interrompue.");
+        Draw_DrawString(10, 10, COLOR_TITLE, "Menu de configuration du syst\u00E8me");
+        Draw_DrawString(10, 30, COLOR_WHITE, "Connexion forc\u00E9e d\u00E9sactiv\u00E9e avec succ\u00E8s.\nRemarque : la connexion automatique peut rester interrompue.");
 
         u32 pressed = waitInputWithTimeout(1000);
         if(pressed & KEY_B)
@@ -360,11 +360,11 @@ void SysConfigMenu_ToggleCardIfPower(void)
         if (R_FAILED(res)) cardIfStatus = false;
 
         Draw_Lock();
-        Draw_DrawString(10, 10, COLOR_TITLE, "Menu de configuration du système");
+        Draw_DrawString(10, 10, COLOR_TITLE, "Menu de configuration du syst\u00E8me");
         u32 posY = Draw_DrawString(10, 30, COLOR_WHITE, "Appuyez sur A pour basculer, appuyez sur B pour annuler.\n\n");
-        posY = Draw_DrawString(10, posY, COLOR_WHITE, "Insérer ou retirer une carte réinitialisera le statut\net vous devrez réinsérer une carte si\nvous souhaitez y jouer.\n\n");
+        posY = Draw_DrawString(10, posY, COLOR_WHITE, "Ins\u00E9rer ou retirer une carte r\u00E9initialisera le statut\net vous devrez r\u00E9ins\u00E9rer une carte si\nvous souhaitez y jouer.\n\n");
         Draw_DrawString(10, posY, COLOR_WHITE, "Statut actuel :");
-        Draw_DrawString(100, posY, !cardIfStatus ? COLOR_RED : COLOR_GREEN, !cardIfStatus ? " DÉSACTIVÉ" : " ACTIVÉ ");
+        Draw_DrawString(100, posY, !cardIfStatus ? COLOR_RED : COLOR_GREEN, !cardIfStatus ? " D\u00C9SACTIV\u00C9" : " ACTIV\u00C9 ");
 
         Draw_FlushFramebuffer();
         Draw_Unlock();
@@ -467,10 +467,10 @@ void SysConfigMenu_AdjustVolume(void)
     do
     {
         Draw_Lock();
-        Draw_DrawString(10, 10, COLOR_TITLE, "Menu de configuration du système");
-        u32 posY = Draw_DrawString(10, 30, COLOR_WHITE, "Y : Activer/désactiver le curseur de volume.\nManette +/Pad circulaire : Régler niv. volume.\nA: Appliquer\nB : Retour\n\n");
+        Draw_DrawString(10, 10, COLOR_TITLE, "Menu de configuration du syst\u00E8me");
+        u32 posY = Draw_DrawString(10, 30, COLOR_WHITE, "Y : Activer/d\u00E9sactiver le curseur de volume.\nManette +/Pad circulaire : R\u00E9gler niv. volume.\nA: Appliquer\nB : Retour\n\n");
         Draw_DrawString(10, posY, COLOR_WHITE, "Current status:");
-        posY = Draw_DrawString(100, posY, (tempVolumeOverride == -1) ? COLOR_RED : COLOR_GREEN, (tempVolumeOverride == -1) ? " DÉSACTIVÉ" : " ACTIVÉ ");
+        posY = Draw_DrawString(100, posY, (tempVolumeOverride == -1) ? COLOR_RED : COLOR_GREEN, (tempVolumeOverride == -1) ? " D\u00C9SACTIV\u00C9" : " ACTIV\u00C9 ");
         if (tempVolumeOverride != -1) {
             posY = Draw_DrawFormattedString(30, posY, COLOR_WHITE, "\nValeur : [%d%%]    ", tempVolumeOverride);
         } else {
@@ -490,9 +490,9 @@ void SysConfigMenu_AdjustVolume(void)
             Result res = SysConfigMenu_ApplyVolumeOverride();
             LumaConfig_SaveSettings();
             if (R_SUCCEEDED(res))
-                Draw_DrawString(10, posY, COLOR_GREEN, "\nSuccès !");
+                Draw_DrawString(10, posY, COLOR_GREEN, "\nSucc\u00E8s !");
             else
-                Draw_DrawFormattedString(10, posY, COLOR_RED, "\nÉchoué : 0x%08lX", res);
+                Draw_DrawFormattedString(10, posY, COLOR_RED, "\n\u00C9chou\u00E9 : 0x%08lX", res);
         }
         else if(pressed & KEY_B)
             return;
@@ -545,7 +545,7 @@ void SysConfigMenu_ChangeScreenBrightness(void)
     do
     {
         Draw_Lock();
-        Draw_DrawString(10, 10, COLOR_TITLE, "Luminosité de l'écran");
+        Draw_DrawString(10, 10, COLOR_TITLE, "Luminosit\u00E9 de l'\u00E9cran");
         u32 posY = 30;
         posY = Draw_DrawFormattedString(
             10,
@@ -560,8 +560,8 @@ void SysConfigMenu_ChangeScreenBrightness(void)
         posY = Draw_DrawString(10, posY, COLOR_WHITE, "Appuyez sur A pour commencer, B pour quitter.\n\n");
 
         posY = Draw_DrawString(10, posY, COLOR_RED, "ATTENTION : \n");
-        posY = Draw_DrawString(10, posY, COLOR_WHITE, "  * la valeur sera limitée aux préréglages.\n");
-        posY = Draw_DrawString(10, posY, COLOR_WHITE, "  * le framebuffer inférieur sera restauré jusqu'à\nce que vous quittiez.");
+        posY = Draw_DrawString(10, posY, COLOR_WHITE, "  * la valeur sera limit\u00E9e aux pr\u00E9r\u00E9glages.\n");
+        posY = Draw_DrawString(10, posY, COLOR_WHITE, "  * le framebuffer inf\u00E9rieur sera restaur\u00E9 jusqu'\u00E0\nce que vous quittiez.");
         Draw_FlushFramebuffer();
         Draw_Unlock();
 
