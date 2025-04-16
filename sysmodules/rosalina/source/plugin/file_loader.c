@@ -194,8 +194,8 @@ bool     TryToLoadPlugin(Handle process, bool isHomebrew)
         {
             "Impossible de lire le fichier.",
             "Fichier de plugin invalide\nCe n'est pas un format de plugin 3GX valide !",
-            "Fichier de plugin obsolète\nRechercher un plugin plus récent.",
-            "Chargeur de plugin obsolète\nVérifiez les mises à jour de Luma3DS."   
+            "Fichier de plugin obsol\u00E8te\nRechercher un plugin plus r\u00E9cent.",
+            "Chargeur de plugin obsol\u00E8te\nV\u00E9rifiez les mises \u00E0 jour de Luma3DS."   
         };
 
         ctx->error.message = errors[R_MODULE(res) == RM_LDR ? R_DESCRIPTION(res) : 0];
@@ -207,7 +207,7 @@ bool     TryToLoadPlugin(Handle process, bool isHomebrew)
 
     // Check compatibility
     if (!res && fileHeader.infos.compatibility == PLG_COMPAT_EMULATOR) {
-        ctx->error.message = "Le plugin est uniquement compatible avec les émulateurs";
+        ctx->error.message = "Le plugin est uniquement compatible avec les \u00E9mulateurs";
         res = -1;
     }
 
@@ -228,12 +228,12 @@ bool     TryToLoadPlugin(Handle process, bool isHomebrew)
 
     // Set memory region size according to header
     if (!res && R_FAILED((res = MemoryBlock__SetSize(memRegionSizes[fileHeader.infos.memoryRegionSize])))) {
-        ctx->error.message = "Impossible de définir la taille du bloc de mémoire.";
+        ctx->error.message = "Impossible de d\u00E9finir la taille du bloc de m\u00E9moire.";
     }
     
     // Ensure memory block is mounted
     if (!res && R_FAILED((res = MemoryBlock__IsReady())))
-        ctx->error.message = "Échec de l'allocation de mémoire.";
+        ctx->error.message = "\u00C9chec de l'allocation de m\u00E9moire.";
 
     // Plugins will not exceed 5MB so this is fine
     if (!res) {
@@ -258,7 +258,7 @@ bool     TryToLoadPlugin(Handle process, bool isHomebrew)
 
     // Read code
     if (!res && R_FAILED(res = Read_3gx_LoadSegments(&plugin, header, ctx->memblock.memblock + sizeof(PluginHeader)))) {
-        if (res == MAKERESULT(RL_PERMANENT, RS_INVALIDARG, RM_LDR, RD_NO_DATA)) ctx->error.message = "Ce plugin nécessite une fonction de chargement.";
+        if (res == MAKERESULT(RL_PERMANENT, RS_INVALIDARG, RM_LDR, RD_NO_DATA)) ctx->error.message = "Ce plugin n\u00E9cessite une fonction de chargement.";
         else if (res == MAKERESULT(RL_PERMANENT, RS_INVALIDARG, RM_LDR, RD_INVALID_ADDRESS)) ctx->error.message = "Ce plugin est corrompu.";
         else ctx->error.message = "Impossible de lire le code du plugin";
     }
