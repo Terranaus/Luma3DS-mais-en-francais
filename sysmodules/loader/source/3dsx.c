@@ -36,7 +36,7 @@
 static _3DSX_Reloc s_relocBuf[MAXRELOCS];
 u32 ldrArgvBuf[ARGVBUF_SIZE/4];
 
-#define SEC_ASSERT(x) do { if (!(x)) { Log_PrintP("L'assertion a échoué : %s", #x); return false; } } while (0)
+#define SEC_ASSERT(x) do { if (!(x)) { Log_PrintP("L'assertion a \u00E9chou\u00E9 : %s", #x); return false; } } while (0)
 
 typedef struct
 {
@@ -148,7 +148,7 @@ Handle Ldr_CodesetFrom3dsx(const char* name, u32* codePages, u32 baseAddr, IFile
     u32 dataLoadSegSize = hdr.dataSegSize - hdr.bssSize;
     if (IFile_Read2(file, d.segPtrs[2], dataLoadSegSize, readOffset) != dataLoadSegSize)
     {
-        Log_PrintP("Impossible de lire le segment de données");
+        Log_PrintP("Impossible de lire le segment de donn\u00E9es");
         return 0;
     }
     readOffset += dataLoadSegSize;
