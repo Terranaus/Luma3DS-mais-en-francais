@@ -836,7 +836,7 @@ void configMenu(bool oldPinStatus, u32 oldPinMode)
 {
     static const char *multiOptionsText[]  = { "EmuNAND par d\u00E9faut : 1( ) 2( ) 3( ) 4( )",
                                                "Luminosit\u00E9 de l'\u00E9cran : 4( ) 3( ) 2( ) 1( )",
-                                               "Ecran de d\u00E9marrage : Non( ) Avant( ) Apr\u00Es( ) payloads",
+                                               "Ecran de d\u00E9marrage : Non( ) Avant( ) Apr\u00E8s( ) payloads",
                                                "Verrouillage du PIN : Non( ) 4( ) 6( ) 8( ) chiffres",
                                                "New 3DS CPU : Non( ) Clock( ) L2( ) Clock+L2( )",
                                                "Hbmenu d\u00E9marrage automatique : Non( ) 3DS( ) DSi( )",
@@ -846,7 +846,7 @@ void configMenu(bool oldPinStatus, u32 oldPinMode)
                                                "( ) Activer le chargement de FIRMs et de modules externes",
                                                "( ) Activer le patch des jeux",
                                                "( ) Rediriger app. threads syscore vers core2",
-                                               "( ) Afficher la chaîne NAND ou utilisateur dans les param\u00Etres syst\u00Eme",
+                                               "( ) Afficher la chaîne NAND ou utilisateur dans les param\u00E8tres syst\u00E8me",
                                                "( ) Afficher l'\u00E9cran de d\u00E9marrage GBA dans AGB_FIRM corrig\u00E9",
 
                                                // Should always be the last 2 entries
@@ -866,8 +866,8 @@ void configMenu(bool oldPinStatus, u32 oldPinMode)
                                                  "avant le d\u00E9marrage des charges utiles\n"
                                                  "(destin\u00E9 aux splashs qui affichent des\n"
                                                  "astuces sur les boutons).\n\n"
-                                                 "\t* 'Apr\u00Es que les charges utiles' affiche\n"
-                                                 "apr\u00Es.\n\n"
+                                                 "\t* 'Apr\u00E8s que les charges utiles' affiche\n"
+                                                 "apr\u00E8s.\n\n"
                                                  "Modifier la dur\u00E9e dans config.ini (3s\n"
                                                  "par d\u00E9faut).",
 
@@ -883,7 +883,7 @@ void configMenu(bool oldPinStatus, u32 oldPinMode)
                                                  "S\u00E9lectionnez le mode CPU pour New 3DS.\n\n"
                                                  "Cela ne s'appliquera pas aux jeux\n"
                                                  "exclusifs/am\u00E9lior\u00E9s de la New 3DS.\n\n"
-                                                 "'Clock+L2' peut causer des probl\u00Emes avec certains\n"
+                                                 "'Clock+L2' peut causer des probl\u00E8mes avec certains\n"
                                                  "jeux.",
 
                                                  "Activez le d\u00E9marrage automatique dans le menu homebrew,\n"
@@ -904,7 +904,7 @@ void configMenu(bool oldPinStatus, u32 oldPinMode)
                                                  "1/2/3/4).",
 
                                                  "Activer le chargement de FIRMs externes\n"
-                                                 "et de modules syst\u00Eme.\n\n"
+                                                 "et de modules syst\u00E8me.\n\n"
                                                  "Dans la plupart des cas, ce n’est pas n\u00E9cessaire.\n\n"
                                                  "Reportez-vous au wiki pour obtenir des instructions.",
 
@@ -931,7 +931,7 @@ void configMenu(bool oldPinStatus, u32 oldPinMode)
                                                  "\t* Emu  = EmuNAND 1\n"
                                                  "\t* EmuX = EmuNAND X\n\n"
                                                  "ou une chaîne personnalis\u00E9e d\u00E9finie par l'utilisateur\n"
-                                                 "dans les param\u00Etres syst\u00Eme.\n\n"
+                                                 "dans les param\u00E8tres syst\u00E8me.\n\n"
                                                  "Reportez-vous au wiki pour obtenir des instructions.",
 
                                                  "Activer l'affichage de l'\u00E9cran de d\u00E9marrage GBA\n"
