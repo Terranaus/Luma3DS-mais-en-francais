@@ -55,7 +55,7 @@ static bool switchToMainDir(bool isSd)
         {
             if (f_mkdir(mainDir) != FR_OK)
             {
-                error("Échec de la création du répertoire luma.");
+                error("\u00C9chec de la cr\u00E9ation du r\u00E9pertoire luma.");
                 return false;
             }
             return switchToMainDir(isSd);
@@ -310,7 +310,7 @@ bool payloadMenu(char *path, bool *hasDisplayedMenu)
         *hasDisplayedMenu = true;
 
         drawString(true, 10, 10, COLOR_TITLE, "Luma3DS chainloader");
-        drawString(true, 10, 10 + SPACING_Y, COLOR_TITLE, "Appuyez sur A pour sélectionner, sur START pour quitter");
+        drawString(true, 10, 10 + SPACING_Y, COLOR_TITLE, "Appuyez sur A pour s\u00E9lectionner, sur START pour quitter");
 
         for(u32 i = 0, posY = 10 + 3 * SPACING_Y, color = COLOR_RED; i < payloadNum; i++, posY += SPACING_Y)
         {
