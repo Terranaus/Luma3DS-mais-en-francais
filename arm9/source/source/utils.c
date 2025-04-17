@@ -151,7 +151,7 @@ void error(const char *fmt, ...)
     initScreens();
     drawString(true, 10, 10, COLOR_RED, "Une erreur est survenue :");
     u32 posY = drawString(true, 10, 30, COLOR_WHITE, buf);
-    drawString(true, 10, posY + 2 * SPACING_Y, COLOR_WHITE, "Appuyez sur un bouton pour \u00E9teindre");
+    drawString(true, 10, posY + 2 * SPACING_Y, COLOR_WHITE, "Appuyez sur un bouton pour éteindre");
 
     waitInput(false);
 

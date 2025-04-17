@@ -829,98 +829,98 @@ void writeConfig(bool isConfigOptions)
         writeConfigMcu();
 
     if(updateIni && !writeLumaIniConfig())
-        error("Erreur lors de l'\u00E9criture du fichier de configuration");
+        error("Erreur lors de l'écriture du fichier de configuration");
 }
 
 void configMenu(bool oldPinStatus, u32 oldPinMode)
 {
-    static const char *multiOptionsText[]  = { "EmuNAND par d\u00E9faut : 1( ) 2( ) 3( ) 4( )",
-                                               "Luminosit\u00E9 de l'\u00E9cran : 4( ) 3( ) 2( ) 1( )",
-                                               "Ecran de d\u00E9marrage : Non( ) Avant( ) Apr\u00Es( ) payloads",
+    static const char *multiOptionsText[]  = { "EmuNAND par défaut : 1( ) 2( ) 3( ) 4( )",
+                                               "Luminosité de l'écran : 4( ) 3( ) 2( ) 1( )",
+                                               "Ecran de démarrage : Non( ) Avant( ) Apr\u00Es( ) payloads",
                                                "Verrouillage du PIN : Non( ) 4( ) 6( ) 8( ) chiffres",
                                                "New 3DS CPU : Non( ) Clock( ) L2( ) Clock+L2( )",
-                                               "Hbmenu d\u00E9marrage automatique : Non( ) 3DS( ) DSi( )",
+                                               "Hbmenu démarrage automatique : Non( ) 3DS( ) DSi( )",
                                              };
 
-    static const char *singleOptionsText[] = { "( ) D\u00E9marrage automatique EmuNAND",
+    static const char *singleOptionsText[] = { "( ) Démarrage automatique EmuNAND",
                                                "( ) Activer le chargement de FIRMs et de modules externes",
                                                "( ) Activer le patch des jeux",
                                                "( ) Rediriger app. threads syscore vers core2",
                                                "( ) Afficher la chaîne NAND ou utilisateur dans les param\u00Etres syst\u00Eme",
-                                               "( ) Afficher l'\u00E9cran de d\u00E9marrage GBA dans AGB_FIRM corrig\u00E9",
+                                               "( ) Afficher l'écran de démarrage GBA dans AGB_FIRM corrigé",
 
                                                // Should always be the last 2 entries
-                                               "\nD\u00E9marrer le chargeur \u00E0 chaîne",
+                                               "\nDémarrer le chargeur à chaîne",
                                                "Sauvegarder et quitter"
                                              };
 
-    static const char *optionsDescription[]  = { "S\u00E9lectionner l'EmuNAND par d\u00E9faut.\n\n"
-                                                 "Il sera d\u00E9marr\u00E9 lorsqu'aucun\n"
-                                                 "boutons du pad n'est enfonc\u00E9 (Haut/Droite/Bas\n"
-                                                 "/Gauche \u00E9gal \u00E0 EmuNANDs 1/2/3/4).",
+    static const char *optionsDescription[]  = { "Sélectionner l'EmuNAND par défaut.\n\n"
+                                                 "Il sera démarré lorsqu'aucun\n"
+                                                 "boutons du pad n'est enfoncé (Haut/Droite/Bas\n"
+                                                 "/Gauche égal à EmuNANDs 1/2/3/4).",
 
-                                                 "S\u00E9lectionner la luminosit\u00E9 de l'\u00E9cran.",
+                                                 "Sélectionner la luminosité de l'écran.",
 
-                                                 "Activer la prise en charge de l'\u00E9cran de d\u00E9marrage.\n\n"
+                                                 "Activer la prise en charge de l'écran de démarrage.\n\n"
                                                  "\t* 'Avant que les charges utiles' affiche\n"
-                                                 "avant le d\u00E9marrage des charges utiles\n"
-                                                 "(destin\u00E9 aux splashs qui affichent des\n"
+                                                 "avant le démarrage des charges utiles\n"
+                                                 "(destiné aux splashs qui affichent des\n"
                                                  "astuces sur les boutons).\n\n"
                                                  "\t* 'Apr\u00Es que les charges utiles' affiche\n"
                                                  "apr\u00Es.\n\n"
-                                                 "Modifier la dur\u00E9e dans config.ini (3s\n"
-                                                 "par d\u00E9faut).",
+                                                 "Modifier la durée dans config.ini (3s\n"
+                                                 "par défaut).",
 
                                                  "Activer un verrouillage PIN.\n\n"
-                                                 "Le code PIN sera demand\u00E9 \u00E0 chaque\n"
-                                                 "d\u00E9marrage de Luma3DS boots.\n\n"
-                                                 "4, 6 ou 8 chiffres peuvent être s\u00E9lectionn\u00E9s.\n\n"
+                                                 "Le code PIN sera demandé à chaque\n"
+                                                 "démarrage de Luma3DS boots.\n\n"
+                                                 "4, 6 ou 8 chiffres peuvent être sélectionnés.\n\n"
                                                  "Les boutons ABXY et les boutons du\n"
-                                                 "pad directionnel peuvent être utilis\u00E9s comme touches.\n\n"
-                                                 "Un message peut \u00E9galement être affich\u00E9\n"
+                                                 "pad directionnel peuvent être utilisés comme touches.\n\n"
+                                                 "Un message peut également être affiché\n"
                                                  "(consultez le wiki pour les instructions).",
 
-                                                 "S\u00E9lectionnez le mode CPU pour New 3DS.\n\n"
+                                                 "Sélectionnez le mode CPU pour New 3DS.\n\n"
                                                  "Cela ne s'appliquera pas aux jeux\n"
-                                                 "exclusifs/am\u00E9lior\u00E9s de la New 3DS.\n\n"
+                                                 "exclusifs/améliorés de la New 3DS.\n\n"
                                                  "'Clock+L2' peut causer des probl\u00Emes avec certains\n"
                                                  "jeux.",
 
-                                                 "Activez le d\u00E9marrage automatique dans le menu homebrew,\n"
+                                                 "Activez le démarrage automatique dans le menu homebrew,\n"
                                                  "soit en mode 3DS ou DSi.\n\n"
-                                                 "Le d\u00E9marrage automatique dans une cartouche\n"
+                                                 "Le démarrage automatique dans une cartouche\n"
                                                  "n'est pas pris en charge.\n\n"
-                                                 "Reportez-vous \u00E0 la section \"autoboot\"\n"
+                                                 "Reportez-vous à la section \"autoboot\"\n"
                                                  "dans le fichier de configuration\n"
-                                                 "pour configurer cette fonctionnalit\u00E9.",
+                                                 "pour configurer cette fonctionnalité.",
 
-                                                 "Si cette option est activ\u00E9e,\n"
-                                                 "un EmuNAND sera lanc\u00E9 au d\u00E9marrage.\n\n"
+                                                 "Si cette option est activée,\n"
+                                                 "un EmuNAND sera lancé au démarrage.\n\n"
                                                  "Sinon, c'est SysNAND qui le fera.\n\n"
-                                                 "Maintenez la touche L au d\u00E9marrage pour changer de NAND.\n\n"
-                                                 "Pour utiliser un EmuNAND diff\u00E9rent de celui par\n"
-                                                 "d\u00E9faut, maintenez un bouton du pav\u00E9 directionnel\n"
+                                                 "Maintenez la touche L au démarrage pour changer de NAND.\n\n"
+                                                 "Pour utiliser un EmuNAND différent de celui par\n"
+                                                 "défaut, maintenez un bouton du pavé directionnel\n"
                                                  "(Haut/Droite/Bas/Gauche equal EmuNANDs\n"
                                                  "1/2/3/4).",
 
                                                  "Activer le chargement de FIRMs externes\n"
                                                  "et de modules syst\u00Eme.\n\n"
-                                                 "Dans la plupart des cas, ce n’est pas n\u00E9cessaire.\n\n"
+                                                 "Dans la plupart des cas, ce n’est pas nécessaire.\n\n"
                                                  "Reportez-vous au wiki pour obtenir des instructions.",
 
                                                  "Activez le remplacement de la configuration\n"
-                                                 "de la r\u00E9gion et de la langue et l'utilisation\n"
-                                                 "des binaires de code corrig\u00E9s, des exHeaders,\n"
+                                                 "de la région et de la langue et l'utilisation\n"
+                                                 "des binaires de code corrigés, des exHeaders,\n"
                                                  "des correctifs de code IPS et\n"
-                                                 "de LayeredFS pour des jeux sp\u00E9cifiques.\n\n"
-                                                 "Permet \u00E9galement \u00E0 certains DLC de\n"
-                                                 "fonctionner pour les jeux hors r\u00E9gion.\n\n"
+                                                 "de LayeredFS pour des jeux spécifiques.\n\n"
+                                                 "Permet également à certains DLC de\n"
+                                                 "fonctionner pour les jeux hors région.\n\n"
                                                  "Reportez-vous au wiki pour obtenir des instructions.",
 
                                                  "Redirige les threads d'application qui\n"
-                                                 "seraient g\u00E9n\u00E9r\u00E9s sur core1 vers core2\n"
-                                                 "(qui est un cœur de processeur suppl\u00E9mentaire pour\n"
-                                                 "les applications qui reste g\u00E9n\u00E9ralement inutilis\u00E9).\n\n"
+                                                 "seraient générés sur core1 vers core2\n"
+                                                 "(qui est un cœur de processeur supplémentaire pour\n"
+                                                 "les applications qui reste généralement inutilisé).\n\n"
                                                  "This improves the performance of very\n"
                                                  "demanding games (like Pok\x82mon US/UM)\n" // CP437
                                                  "by about 10%. Can break some games\n"
@@ -930,19 +930,19 @@ void configMenu(bool oldPinStatus, u32 oldPinMode)
                                                  "\t* Sys  = SysNAND\n"
                                                  "\t* Emu  = EmuNAND 1\n"
                                                  "\t* EmuX = EmuNAND X\n\n"
-                                                 "ou une chaîne personnalis\u00E9e d\u00E9finie par l'utilisateur\n"
+                                                 "ou une chaîne personnalisée définie par l'utilisateur\n"
                                                  "dans les param\u00Etres syst\u00Eme.\n\n"
                                                  "Reportez-vous au wiki pour obtenir des instructions.",
 
-                                                 "Activer l'affichage de l'\u00E9cran de d\u00E9marrage GBA\n"
-                                                 "lors du d\u00E9marrage des jeux GBA.",
+                                                 "Activer l'affichage de l'écran de démarrage GBA\n"
+                                                 "lors du démarrage des jeux GBA.",
 
-                                                // Doit toujours être les 2 derni\u00E8res entr\u00E9es
-                                                "D\u00E9marrez dans le menu du chargeur de chaîne Luma3DS.",
+                                                // Doit toujours être les 2 dernières entrées
+                                                "Démarrez dans le menu du chargeur de chaîne Luma3DS.",
 
                                                  "Enregistrez les modifications et quittez. Pour\n"
                                                  "annuler les modifications, appuyez sur le bouton POWER.\n"
-                                                 "Utilisez START comme raccourci vers cette entr\u00E9e."
+                                                 "Utilisez START comme raccourci vers cette entrée."
                                                };
 
     FirmwareSource nandType = FIRMWARE_SYSNAND;
@@ -1015,7 +1015,7 @@ void configMenu(bool oldPinStatus, u32 oldPinMode)
 
     drawString(true, 10, 10, COLOR_TITLE, CONFIG_TITLE);
     drawString(true, 10, 10 + SPACING_Y, COLOR_TITLE, "Utiliser le DPAD et A pour changer les param\u00Etres");
-    drawFormattedString(false, 10, SCREEN_HEIGHT - 2 * SPACING_Y, COLOR_YELLOW, "D\u00E9marr\u00E9 depuis %s via %s", isSdMode ? "SD" : "CTRNAND", bootTypes[(u32)bootType]);
+    drawFormattedString(false, 10, SCREEN_HEIGHT - 2 * SPACING_Y, COLOR_YELLOW, "Démarré depuis %s via %s", isSdMode ? "SD" : "CTRNAND", bootTypes[(u32)bootType]);
 
     //Character to display a selected option
     char selected = 'x';
