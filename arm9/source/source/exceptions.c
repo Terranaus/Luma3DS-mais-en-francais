@@ -61,7 +61,7 @@ void detectAndProcessExceptionDumps(void)
     const vu8 *additionalData = stackDump + dumpHeader->stackDumpSize;
 
     static const char *handledExceptionNames[] = {
-        "FIQ", "instruction non définie", "interruption de la prefetch", "interruption des données"
+        "FIQ", "instruction non definie", "interruption de la prefetch", "interruption des donnees"
     },
                       *specialExceptions[] = {
         "kernel panic", "svcBreak"
@@ -75,7 +75,7 @@ void detectAndProcessExceptionDumps(void)
         "Ext.Abort on translation - Lv1", "Ext.Abort on translation - Lv2",
         "Translation - Section", "Translation - Page", "Access bit - Section", "Access bit - Page",
         "Domain - Section", "Domain - Page", "Permission - Section", "Permission - Page",
-        "Interruption externe précise", "Interruption externe imprécise", "Évènement de débogage"
+        "Interruption externe precise", "Interruption externe imprecise", "Evenement de debogage"
     };
 
     static const u32 faultStatusValues[] = {
@@ -123,7 +123,7 @@ void detectAndProcessExceptionDumps(void)
         for(u32 i = 0; i < 15; i++)
             if(xfsr == faultStatusValues[i])
             {
-                posY = drawFormattedString(true, 10, posY + SPACING_Y, COLOR_WHITE, "État critique :    %s", faultStatusNames[i]);
+                posY = drawFormattedString(true, 10, posY + SPACING_Y, COLOR_WHITE, "Etat critique :    %s", faultStatusNames[i]);
                 break;
             }
     }
@@ -136,7 +136,7 @@ void detectAndProcessExceptionDumps(void)
                                     "Processus actuel : %.8s (%016llX)", (const char *)additionalData, *(vu64 *)(additionalData + 8));
         else
             posY = drawFormattedString(true, 10, posY + SPACING_Y, COLOR_WHITE,
-                                    "Dump de mémoire Arm9 au décalage %X taille %lX", (uintptr_t)additionalData - (uintptr_t)dumpHeader, size);
+                                    "Dump de memoire Arm9 au decalage %X taille %lX", (uintptr_t)additionalData - (uintptr_t)dumpHeader, size);
     }
     posY += SPACING_Y;
 
@@ -151,13 +151,13 @@ void detectAndProcessExceptionDumps(void)
     }
 
     if(dumpHeader->processor == 11 && dumpHeader->type == 3)
-        posY = drawFormattedString(true, 10, posY + SPACING_Y, COLOR_WHITE, "%-7s%08lX       Type d'accès : %s", "FAR", regs[19], regs[17] & (1u << 11) ? "Ecrire" : "Lire");
+        posY = drawFormattedString(true, 10, posY + SPACING_Y, COLOR_WHITE, "%-7s%08lX       Type d'acces : %s", "FAR", regs[19], regs[17] & (1u << 11) ? "Ecrire" : "Lire");
 
     posY += SPACING_Y;
 
     u32 mode = regs[16] & 0xF;
     if(dumpHeader->type == 3 && (mode == 7 || mode == 11))
-        posY = drawString(true, 10, posY + SPACING_Y, COLOR_YELLOW, "Dump incorrect : échec du dump du code et/ou du stack") + SPACING_Y;
+        posY = drawString(true, 10, posY + SPACING_Y, COLOR_YELLOW, "Dump incorrect : echec du dump du code et/ou du stack") + SPACING_Y;
 
     u32 posYBottom = drawString(false, 10, 10, COLOR_WHITE, "Dump de compilation :") + SPACING_Y;
 
@@ -169,7 +169,7 @@ void detectAndProcessExceptionDumps(void)
             drawFormattedString(false, 10 + 10 * SPACING_X + 3 * i * SPACING_X, posYBottom, COLOR_WHITE, "%02X", *stackDump);
     }
 
-    static const char *choiceMessage[] = {"Appuyez sur A pour enregistrer le dump du plantage", "Appuyez sur un autre bouton pour éteindre"};
+    static const char *choiceMessage[] = {"Appuyez sur A pour enregistrer le dump du plantage", "Appuyez sur un autre bouton pour eteindre"};
 
     drawString(true, 10, posY + SPACING_Y, COLOR_WHITE, choiceMessage[0]);
     drawString(true, 10, posY + SPACING_Y + SPACING_Y , COLOR_WHITE, choiceMessage[1]);
@@ -192,9 +192,9 @@ void detectAndProcessExceptionDumps(void)
         posY = drawString(true, 10, posY + SPACING_Y, COLOR_WHITE, "Vous pouvez trouver le dump dans le fichier suivant :");
         posY = drawFormattedString(true, 10, posY + SPACING_Y, COLOR_WHITE, "%s:/luma/%s", isSdMode ? "SD" : "CTRNAND", path) + SPACING_Y;
     }
-    else posY = drawString(true, 10, posY + SPACING_Y, COLOR_RED, "Erreur lors de l'écriture du dump");
+    else posY = drawString(true, 10, posY + SPACING_Y, COLOR_RED, "Erreur lors de l'ecriture du dump");
 
-    drawString(true, 10, posY + SPACING_Y, COLOR_WHITE, "Appuyez sur un bouton pour éteindre");
+    drawString(true, 10, posY + SPACING_Y, COLOR_WHITE, "Appuyez sur un bouton pour eteindre");
 
     waitInput(false);
 

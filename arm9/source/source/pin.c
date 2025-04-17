@@ -54,8 +54,8 @@ void newPin(bool allowSkipping, u32 pinMode)
 
     u8 length = 4 + 2 * (pinMode - 1);
 
-    drawString(true, 10, 10, COLOR_TITLE, "Saisissez un nouveau code PIN à l'aide d'ABXY et de la manette +.");
-    drawString(true, 10, 10 + SPACING_Y, COLOR_TITLE, allowSkipping ? "Appuyez sur START pour ignorer, SELECT pour réinitialiser" : "Appuyez sur SELECT pour réinitialiser");
+    drawString(true, 10, 10, COLOR_TITLE, "Saisissez un nouveau code PIN a l'aide d'ABXY et de la manette +.");
+    drawString(true, 10, 10 + SPACING_Y, COLOR_TITLE, allowSkipping ? "Appuyez sur START pour ignorer, SELECT pour reinitialiser" : "Appuyez sur SELECT pour reinitialiser");
 
     drawFormattedString(true, 10, 10 + 3 * SPACING_Y, COLOR_WHITE, "PIN (%u digits): ", length);
 
@@ -122,7 +122,7 @@ void newPin(bool allowSkipping, u32 pinMode)
     memcpy(pin.hash, tmp, sizeof(tmp));
 
     if(!fileWrite(&pin, PIN_FILE, sizeof(PinData)))
-        error("Erreur lors de l'écriture du fichier PIN");
+        error("Erreur lors de l'ecriture du fichier PIN");
 }
 
 bool verifyPin(u32 pinMode)
@@ -148,8 +148,8 @@ bool verifyPin(u32 pinMode)
 
     swapFramebuffers(true);
 
-    drawString(true, 10, 10, COLOR_TITLE, "Saisissez le code PIN à l'aide de ABXY et de la manette + pour continuer");
-    drawString(true, 10, 10 + SPACING_Y, COLOR_TITLE, "Appuyez sur START pour éteindre, SELECT pour effacer");
+    drawString(true, 10, 10, COLOR_TITLE, "Saisissez le code PIN a l'aide de ABXY et de la manette + pour continuer");
+    drawString(true, 10, 10 + SPACING_Y, COLOR_TITLE, "Appuyez sur START pour eteindre, SELECT pour effacer");
 
     drawFormattedString(true, 10, 10 + 3 * SPACING_Y, COLOR_WHITE, "PIN (%u digits): ", lengthBlock[0]);
 
@@ -225,7 +225,7 @@ bool verifyPin(u32 pinMode)
         {
             reset = true;
 
-            drawString(true, 10, 10 + 5 * SPACING_Y, COLOR_RED, "Code PIN incorrect, réessayez");
+            drawString(true, 10, 10 + 5 * SPACING_Y, COLOR_RED, "Code PIN incorrect, reessayez");
         }
     }
 
