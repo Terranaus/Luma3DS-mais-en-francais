@@ -193,20 +193,20 @@ static int ERRF_FormatError(char *out, const ERRF_FatalErrInfo *info, bool isLog
         u64 timeNow = osGetTime();
         u64 timeAtBoot = timeNow - (1000 * svcGetSystemTick() / SYSCLOCK_ARM11);
         dateTimeToString(dateTimeStr, timeNow, false);
-        out += sprintf(out, "Signal\u00E9 sur :         %s\n", dateTimeStr);
+        out += sprintf(out, "Signalé sur :         %s\n", dateTimeStr);
         dateTimeToString(dateTimeStr, timeAtBoot, false);
-        out += sprintf(out, "Syst\u00E8me d\u00E9marr\u00E9 sur : %s\n\n", dateTimeStr);
+        out += sprintf(out, "Système démarré sur : %s\n\n", dateTimeStr);
 
     }
     switch (info->type)
     {
         case ERRF_ERRTYPE_NAND_DAMAGED:
-            out += sprintf(out, "La puce NAND a \u00E9t\u00E9 endommag\u00E9e.\n");
+            out += sprintf(out, "La puce NAND a été endommagée.\n");
             break;
         case ERRF_ERRTYPE_CARD_REMOVED:
         {
             const char *medium = R_MODULE(info->resCode) == RM_SDMC ? "carte SD" : "cartouche";
-            out += sprintf(out, "La %s a \u00E9t\u00E9 retir\u00E9e.\n", medium);
+            out += sprintf(out, "La %s a été retirée.\n", medium);
             break;
         }
         case ERRF_ERRTYPE_GENERIC:
@@ -226,7 +226,7 @@ static int ERRF_FormatError(char *out, const ERRF_FatalErrInfo *info, bool isLog
             out += sprintf(out, "Raison :           %.96s\n", info->data.failure_mesg);
             break;
         default:
-            out += sprintf(out, "Donn\u00E9es d'erreur fatale non valides.\n");
+            out += sprintf(out, "Données d'erreur fatale non valides.\n");
     }
 
     // We might not always have enough space to display this on screen, so keep it to the log file
@@ -249,7 +249,7 @@ static void ERRF_DisplayError(ERRF_FatalErrInfo *info)
     posY = posY < 30 ? 30 : posY;
 
     posY = Draw_DrawString(10, posY, COLOR_WHITE, buf);
-    posY = Draw_DrawString(10, posY + SPACING_Y, COLOR_WHITE, "Appuyez sur un bouton pour red\u00E9marrer.");
+    posY = Draw_DrawString(10, posY + SPACING_Y, COLOR_WHITE, "Appuyez sur un bouton pour redémarrer.");
 
     Draw_FlushFramebuffer();
     Draw_Unlock();

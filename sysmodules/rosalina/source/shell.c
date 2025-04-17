@@ -35,7 +35,7 @@ static void forceAudioOutput(u32 forceOp)
     // DSP/Codec sysmodule already have a way to force headphone output,
     // but it's only for when the shell is closed (applied on shell close,
     // cleared on shell opened); that mechanism is usually used by apps
-    // which have a "jukebox" feature  (e.g Pok\u00E9mon SMD).
+    // which have a "jukebox" feature  (e.g Pokémon SMD).
 
     // This whole thing here is fragile and doesn't mesh well with the "codec"
     // sysmodule. For example, inserting then removing HPs will undo what this

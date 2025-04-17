@@ -97,7 +97,7 @@ GDB_DECLARE_REMOTE_COMMAND_HANDLER(SyncRequestInfo)
 
     if(ctx->selectedThreadId == 0)
     {
-        n = sprintf(outbuf, "Impossible d'ex\u00E9cuter cette commande sans thread s\u00E9lectionn\u00E9.\n");
+        n = sprintf(outbuf, "Impossible d'exécuter cette commande sans thread sélectionné.\n");
         goto end;
     }
 
@@ -119,14 +119,14 @@ GDB_DECLARE_REMOTE_COMMAND_HANDLER(SyncRequestInfo)
 
     if(R_FAILED(r) || id == MAX_DEBUG_THREAD)
     {
-        n = sprintf(outbuf, "Thread non valide ou en cours d'ex\u00E9cution.\n");
+        n = sprintf(outbuf, "Thread non valide ou en cours d'exécution.\n");
         goto end;
     }
 
     r = svcReadProcessMemory(&cmdId, ctx->debug, ctx->threadInfos[id].tls + 0x80, 4);
     if(R_FAILED(r))
     {
-        n = sprintf(outbuf, "Thread non valide ou en cours d'ex\u00E9cution.\n");
+        n = sprintf(outbuf, "Thread non valide ou en cours d'exécution.\n");
         goto end;
     }
 
@@ -142,7 +142,7 @@ GDB_DECLARE_REMOTE_COMMAND_HANDLER(SyncRequestInfo)
     if(R_FAILED(r) || ((regs.cpu_registers.cpsr & 0x20) && !(instr == 0xDF32 || (instr == 0xDFFE && regs.cpu_registers.r[12] == 0x32)))
                    || (!(regs.cpu_registers.cpsr & 0x20) && !(instr == 0xEF000032 || (instr == 0xEF0000FE && regs.cpu_registers.r[12] == 0x32))))
     {
-        n = sprintf(outbuf, "Le thread s\u00E9lectionn\u00E9 n'ex\u00E9cute actuellement pas de demande de synchronisation (svc 0x32).\n");
+        n = sprintf(outbuf, "Le thread sélectionné n'exécute actuellement pas de demande de synchronisation (svc 0x32).\n");
         goto end;
     }
 
@@ -303,7 +303,7 @@ GDB_DECLARE_REMOTE_COMMAND_HANDLER(ListAllHandles)
         n = sprintf(outbuf, "Le processus n'a pas de handles ?\n");
     else
     {
-        n = sprintf(outbuf, "handles Trouv\u00E9 %ld.\n", count);
+        n = sprintf(outbuf, "handles Trouvé %ld.\n", count);
 
         const char *comma = "";
         for (s32 i = 0; i < count && n < (GDB_BUF_LEN >> 1) - 20; ++i)
@@ -396,7 +396,7 @@ GDB_DECLARE_REMOTE_COMMAND_HANDLER(ToggleExternalMemoryAccess)
 
     ctx->enableExternalMemoryAccess = !ctx->enableExternalMemoryAccess;
 
-    n = sprintf(outbuf, "Acc\u00E8s \u00E0 la m\u00E9moire externe %s avec succ\u00E8s.\n", ctx->enableExternalMemoryAccess ? "activ\u00E9" : "d\u00E9sactiv\u00E9");
+    n = sprintf(outbuf, "Accès à la mémoire externe %s avec succès.\n", ctx->enableExternalMemoryAccess ? "activé" : "désactivé");
 
     return GDB_SendHexPacket(ctx, outbuf, n);
 }
@@ -442,7 +442,7 @@ GDB_DECLARE_REMOTE_COMMAND_HANDLER(GetThreadPriority)
     int n;
     char outbuf[GDB_BUF_LEN / 2 + 1];
 
-    n = sprintf(outbuf, "Thread (%ld) priorit\u00E9 : 0x%02lX\n", ctx->selectedThreadId,
+    n = sprintf(outbuf, "Thread (%ld) priorité : 0x%02lX\n", ctx->selectedThreadId,
                 GDB_GetDynamicThreadPriority(ctx, ctx->selectedThreadId));
 
     return GDB_SendHexPacket(ctx, outbuf, n);

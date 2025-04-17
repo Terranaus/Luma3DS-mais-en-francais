@@ -359,7 +359,7 @@ GDB_DECLARE_QUERY_HANDLER(ThreadExtraInfo)
     }
 
     r = svcGetDebugThreadParam(&dummy, &val, ctx->debug, id, DBGTHREAD_PARAMETER_SCHEDULING_MASK_LOW);
-    sStatus = R_SUCCEEDED(r) ? (val == 1 ? ", en cours d'ex\u00E9cution, " : ", inactif, ") : "";
+    sStatus = R_SUCCEEDED(r) ? (val == 1 ? ", en cours d'exécution, " : ", inactif, ") : "";
 
     val = (u32)GDB_GetDynamicThreadPriority(ctx, id);
     if(val == 65)
@@ -377,7 +377,7 @@ GDB_DECLARE_QUERY_HANDLER(ThreadExtraInfo)
     if(R_FAILED(r))
         sCoreIdeal[0] = 0;
     else
-        sprintf(sCoreIdeal, "noyau id\u00E9al : %lu, ", val);
+        sprintf(sCoreIdeal, "noyau idéal : %lu, ", val);
 
     r = svcGetDebugThreadParam(&dummy, &val, ctx->debug, id, DBGTHREAD_PARAMETER_CPU_CREATOR); // Creator = "first ran, and running the thread"
     if(R_FAILED(r))

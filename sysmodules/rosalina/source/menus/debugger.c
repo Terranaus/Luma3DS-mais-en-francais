@@ -37,11 +37,11 @@
 #include "pmdbgext.h"
 
 Menu debuggerMenu = {
-    "Menu des options du d\u00E9bogueur",
+    "Menu des options du débogueur",
     {
-        { "Activer le d\u00E9bogueur",                        METHOD, .method = &DebuggerMenu_EnableDebugger  },
-        { "D\u00E9sactiver le d\u00E9bogueur",                       METHOD, .method = &DebuggerMenu_DisableDebugger },
-        { "Forcer le d\u00E9bogage de l'application suivante au lancement", METHOD, .method = &DebuggerMenu_DebugNextApplicationByForce },
+        { "Activer le débogueur",                        METHOD, .method = &DebuggerMenu_EnableDebugger  },
+        { "Désactiver le débogueur",                       METHOD, .method = &DebuggerMenu_DisableDebugger },
+        { "Forcer le débogage de l'application suivante au lancement", METHOD, .method = &DebuggerMenu_DebugNextApplicationByForce },
         {},
     }
 };
@@ -127,15 +127,15 @@ void DebuggerMenu_EnableDebugger(void)
     do
     {
         Draw_Lock();
-        Draw_DrawString(10, 10, COLOR_TITLE, "Menu des options du d\u00E9bogueur");
+        Draw_DrawString(10, 10, COLOR_TITLE, "Menu des options du débogueur");
 
         if(alreadyEnabled)
-            Draw_DrawString(10, 30, COLOR_WHITE, "D\u00E9j\u00E0 activ\u00E9 !");
+            Draw_DrawString(10, 30, COLOR_WHITE, "Déjà activé !");
         else if(!isSocURegistered)
-            Draw_DrawString(10, 30, COLOR_WHITE, "Impossible de d\u00E9marrer le d\u00E9bogueur avant que le syst\u00E8me\nn'ait termin\u00E9 le chargement.");
+            Draw_DrawString(10, 30, COLOR_WHITE, "Impossible de démarrer le débogueur avant que le système\nn'ait terminé le chargement.");
         else
         {
-            Draw_DrawString(10, 30, COLOR_WHITE, "D\u00E9marrage du d\u00E9bogueur...");
+            Draw_DrawString(10, 30, COLOR_WHITE, "Démarrage du débogueur...");
 
             if(!done)
             {
@@ -151,11 +151,11 @@ void DebuggerMenu_EnableDebugger(void)
                 }
 
                 if(res != 0)
-                    sprintf(buf, "D\u00E9marrage du d\u00E9bogueur… \u00E9chec (0x%08lx).", (u32)res);
+                    sprintf(buf, "Démarrage du débogueur… échec (0x%08lx).", (u32)res);
                 done = true;
             }
             if(res == 0)
-                Draw_DrawString(10, 30, COLOR_WHITE, "D\u00E9marrage du d\u00E9bogueur... OK.");
+                Draw_DrawString(10, 30, COLOR_WHITE, "Démarrage du débogueur... OK.");
             else
                 Draw_DrawString(10, 30, COLOR_WHITE, buf);
         }
@@ -174,13 +174,13 @@ void DebuggerMenu_DisableDebugger(void)
     char buf[65];
 
     if(res != 0)
-        sprintf(buf, "\u00C9chec de la d\u00E9sactivation du d\u00E9bogueur (0x%08lx).", (u32)res);
+        sprintf(buf, "Échec de la désactivation du débogueur (0x%08lx).", (u32)res);
 
     do
     {
         Draw_Lock();
-        Draw_DrawString(10, 10, COLOR_TITLE, "Menu des options du d\u00E9bogueur");
-        Draw_DrawString(10, 30, COLOR_WHITE, initialized ? (res == 0 ? "Le d\u00E9bogueur a \u00E9t\u00E9 d\u00E9sactiv\u00E9 avec succ\u00E8s." : buf) : "Le d\u00E9bogueur n'est pas activ\u00E9.");
+        Draw_DrawString(10, 10, COLOR_TITLE, "Menu des options du débogueur");
+        Draw_DrawString(10, 30, COLOR_WHITE, initialized ? (res == 0 ? "Le débogueur a été désactivé avec succès." : buf) : "Le débogueur n'est pas activé.");
         Draw_FlushFramebuffer();
         Draw_Unlock();
     }
@@ -198,7 +198,7 @@ void DebuggerMenu_DebugNextApplicationByForce(void)
         GDB_LockAllContexts(&gdbServer);
 
         if (nextApplicationGdbCtx != NULL)
-            strcpy(buf, "Op\u00E9ration d\u00E9j\u00E0 effectu\u00E9e.");
+            strcpy(buf, "Opération déjà effectuée.");
         else
         {
             nextApplicationGdbCtx = GDB_SelectAvailableContext(&gdbServer, GDB_PORT_BASE + 3, GDB_PORT_BASE + 4);
@@ -208,27 +208,27 @@ void DebuggerMenu_DebugNextApplicationByForce(void)
                 nextApplicationGdbCtx->pid = 0xFFFFFFFF;
                 res = PMDBG_DebugNextApplicationByForce(true);
                 if(R_SUCCEEDED(res))
-                    sprintf(buf, "Op\u00E9ration r\u00E9ussie.\nUtilisez le port %d pour vous connecter \u00E0 la prochaine\napplication lanc\u00E9e.", nextApplicationGdbCtx->localPort);
+                    sprintf(buf, "Opération réussie.\nUtilisez le port %d pour vous connecter à la prochaine\napplication lancée.", nextApplicationGdbCtx->localPort);
                 else
                 {
                     nextApplicationGdbCtx->flags = 0;
                     nextApplicationGdbCtx->localPort = 0;
                     nextApplicationGdbCtx = NULL;
-                        sprintf(buf, "L'op\u00E9ration a \u00E9chou\u00E9 (0x%08lx).", (u32)res);
+                        sprintf(buf, "L'opération a échoué (0x%08lx).", (u32)res);
                 }
             }
             else
-                strcpy(buf, "\u00C9chec de l'allocation d'un emplacement.\nVeuillez d'abord d\u00E9s\u00E9lectionner un processus dans la liste des processus");
+                strcpy(buf, "Échec de l'allocation d'un emplacement.\nVeuillez d'abord désélectionner un processus dans la liste des processus");
         }
         GDB_UnlockAllContexts(&gdbServer);
     }
     else
-        strcpy(buf, "Le d\u00E9bogueur n'est pas activ\u00E9.");
+        strcpy(buf, "Le débogueur n'est pas activé.");
 
     do
     {
         Draw_Lock();
-        Draw_DrawString(10, 10, COLOR_TITLE, "Menu des options du d\u00E9bogueur");
+        Draw_DrawString(10, 10, COLOR_TITLE, "Menu des options du débogueur");
         Draw_DrawString(10, 30, COLOR_WHITE, buf);
         Draw_FlushFramebuffer();
         Draw_Unlock();

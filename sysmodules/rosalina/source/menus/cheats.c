@@ -1653,13 +1653,13 @@ static Result Cheat_MapMemoryAndApplyCheat(u32 pid, CheatDescription* const chea
         }
         else
         {
-            sprintf(failureReason, "Le processus de d\u00E9bogage a \u00E9chou\u00E9");
+            sprintf(failureReason, "Le processus de débogage a échoué");
             svcCloseHandle(processHandle);
         }
     }
     else
     {
-        sprintf(failureReason, "\u00C9chec du processus d'ouverture");
+        sprintf(failureReason, "Échec du processus d'ouverture");
     }
     return res;
 }
@@ -2049,11 +2049,11 @@ void RosalinaMenu_Cheats(void)
             Draw_DrawString(10, 10, COLOR_TITLE, "Cheats");
             if (titleId == 0)
             {
-                Draw_DrawString(10, 30, COLOR_WHITE, "Aucun titre appropri\u00E9 trouv\u00E9");
+                Draw_DrawString(10, 30, COLOR_WHITE, "Aucun titre approprié trouvé");
             }
             else
             {
-                Draw_DrawFormattedString(10, 30, COLOR_WHITE, "Aucun cheat trouv\u00E9 pour le titre %016llX", titleId);
+                Draw_DrawFormattedString(10, 30, COLOR_WHITE, "Aucun cheat trouvé pour le titre %016llX", titleId);
             }
 
             Draw_FlushFramebuffer();
