@@ -142,7 +142,7 @@ static inline u32 loadFirmFromStorage(FirmwareType firmType)
 
         firmSize = decryptNusFirm((Ticket *)(cetk + 0x140), (Cxi *)firm, firmSize);
 
-        if(!firmSize) error("Impossible de d\u00E9crypter le FIRM externe.");
+        if(!firmSize) error("Impossible de décrypter le FIRM externe.");
     }
 
     if(!checkFirm(firmSize)) error("Le FIRM externe est invalide ou corrompu.");
@@ -197,7 +197,7 @@ u32 loadNintendoFirm(FirmwareType *firmType, FirmwareSource nandType, bool loadF
         else storageLoadError = true;
     }
     // If all attempts failed, panic.
-    if(ctrNandError && storageLoadError) error("Impossible de monter la CTRNAND ou de charger le CTRNAND FIRM.\nVeuillez utiliser un p\u00E9riph\u00E9rique externe.");
+    if(ctrNandError && storageLoadError) error("Impossible de monter la CTRNAND ou de charger le CTRNAND FIRM.\nVeuillez utiliser un périphérique externe.");
 
     //Check that the FIRM is right for the console from the Arm9 section address
     bool isO3dsFirm = firm->section[3].offset == 0 && firm->section[2].address == (u8 *)0x8006800;
@@ -262,7 +262,7 @@ u32 loadNintendoFirm(FirmwareType *firmType, FirmwareSource nandType, bool loadF
     if(!ISN3DS && *firmType == NATIVE_FIRM && firm->section[0].address == (u8 *)0x1FF80000)
     {
         //We can't boot < 3.x EmuNANDs
-        if(nandType != FIRMWARE_SYSNAND) error("Un ancien EmuNAND non pris en charge a \u00E9t\u00E9 d\u00E9tect\u00E9.\nLuma3DS ne parvient pas \u00E0 le d\u00E9marrer.");
+        if(nandType != FIRMWARE_SYSNAND) error("Un ancien EmuNAND non pris en charge a été détecté.\nLuma3DS ne parvient pas à le démarrer.");
 
         //If you want to use SAFE_FIRM on 1.0, use Luma from NAND & comment this line:
         if(isSafeMode) error("SAFE_MODE n'est pas pris en charge sur FIRM 1.x/2.x.");
@@ -535,12 +535,12 @@ static void mergeSection0(FirmwareType firmType, u32 firmVersion, bool loadFromS
     if (isLgyFirm)
     {
         if (patchK11ModuleLoadingLgy(newKipSectionSize, kernel11Addr, kernel11Size) != 0)
-            error("\u00C9chec du chargement des sysmodules");
+            error("Échec du chargement des sysmodules");
     }
     else
     {
         if (patchK11ModuleLoading(oldKipSectionSize, newKipSectionSize, nbModules, kernel11Addr, kernel11Size) != 0)
-            error("\u00C9chec du chargement des sysmodules");
+            error("Échec du chargement des sysmodules");
     }
 }
 
