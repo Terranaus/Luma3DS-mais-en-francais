@@ -150,23 +150,23 @@ static void ScreenFiltersMenu_UpdateEntries(void)
 {
     if (topScreenFilter.colorCurveCorrection == 0)
     {
-        screenFiltersMenu.items[10].title = "[IPS recommandé] Améliorer couleurs écran sup.";
+        screenFiltersMenu.items[10].title = "[IPS recommande] Ameliorer couleurs ecran sup.";
         screenFiltersMenu.items[10].method = &ScreenFiltersMenu_SetTopScreenSrgbColorCurve;
     }
     else
     {
-        screenFiltersMenu.items[10].title = "Restaurer la courbe de couleur de l'écran supérieur";
+        screenFiltersMenu.items[10].title = "Restaurer la courbe de couleur de l'ecran superieur";
         screenFiltersMenu.items[10].method = &ScreenFiltersMenu_RestoreTopScreenColorCurve;
     }
 
     if (bottomScreenFilter.colorCurveCorrection == 0)
     {
-        screenFiltersMenu.items[11].title = "[IPS recommandé] Améliorer couleurs écran inf.";
+        screenFiltersMenu.items[11].title = "[IPS recommande] Ameliorer couleurs ecran inf.";
         screenFiltersMenu.items[11].method = &ScreenFiltersMenu_SetBottomScreenSrgbColorCurve;
     }
     else
     {
-        screenFiltersMenu.items[11].title = "Restaurer la courbe de couleur de l'écran inférieur";
+        screenFiltersMenu.items[11].title = "Restaurer la courbe de couleur de l'ecran inferieur";
         screenFiltersMenu.items[11].method = &ScreenFiltersMenu_RestoreBottomScreenColorCurve;
     }
 }
@@ -182,21 +182,21 @@ static void ScreenFiltersMenu_SetColorCurveCorrection(bool top, u8 colorCurveCor
 }
 
 Menu screenFiltersMenu = {
-    "Menu des filtres d'écran",
+    "Menu des filtres d'ecran",
     {
-        { "[6500K] Température par défaut", METHOD, .method = &ScreenFiltersMenu_SetDefault },
+        { "[6500K] Temperature par defaut", METHOD, .method = &ScreenFiltersMenu_SetDefault },
         { "[10000K] Aquarium", METHOD, .method = &ScreenFiltersMenu_SetAquarium },
         { "[7500K] Ciel couvert", METHOD, .method = &ScreenFiltersMenu_SetOvercastSky },
-        { "[5500K] Lumière du jour", METHOD, .method = &ScreenFiltersMenu_SetDaylight },
+        { "[5500K] Lumiere du jour", METHOD, .method = &ScreenFiltersMenu_SetDaylight },
         { "[4200K] Fluorescent", METHOD, .method = &ScreenFiltersMenu_SetFluorescent },
-        { "[3400K] Halogène", METHOD, .method = &ScreenFiltersMenu_SetHalogen },
+        { "[3400K] Halogene", METHOD, .method = &ScreenFiltersMenu_SetHalogen },
         { "[2700K] Incandescent", METHOD, .method = &ScreenFiltersMenu_SetIncandescent },
         { "[2300K] Incandescent chaud", METHOD, .method = &ScreenFiltersMenu_SetWarmIncandescent },
         { "[1900K] Bougie", METHOD, .method = &ScreenFiltersMenu_SetCandle },
         { "[1200K] Braise", METHOD, .method = &ScreenFiltersMenu_SetEmber },
-        { "[IPS recommandé] Améliorer couleurs écran sup.", METHOD, .method = &ScreenFiltersMenu_SetTopScreenSrgbColorCurve },
-        { "[IPS recommandé] Améliorer couleurs écran inf.", METHOD, .method = &ScreenFiltersMenu_SetTopScreenSrgbColorCurve },
-        { "Configuration avancée...", METHOD, .method = &ScreenFiltersMenu_AdvancedConfiguration },
+        { "[IPS recommande] Ameliorer couleurs ecran sup.", METHOD, .method = &ScreenFiltersMenu_SetTopScreenSrgbColorCurve },
+        { "[IPS recommande] Ameliorer couleurs ecran inf.", METHOD, .method = &ScreenFiltersMenu_SetTopScreenSrgbColorCurve },
+        { "Configuration avancee...", METHOD, .method = &ScreenFiltersMenu_AdvancedConfiguration },
         {},
     }
 };
@@ -382,7 +382,7 @@ static u32 ScreenFiltersMenu_AdvancedConfigurationHelper(const ScreenFilter *fil
     char buf[64];
 
     Draw_DrawCharacter(10, posY, COLOR_TITLE, pos == offset++ ? '>' : ' ');
-    posY = Draw_DrawFormattedString(30, posY, COLOR_WHITE, "Température : %12dK    \n", filter->cct);
+    posY = Draw_DrawFormattedString(30, posY, COLOR_WHITE, "Temperature : %12dK    \n", filter->cct);
 
     floatToString(buf, filter->gamma, 2, true);
     Draw_DrawCharacter(10, posY, COLOR_TITLE, pos == offset++ ? '>' : ' ');
@@ -394,7 +394,7 @@ static u32 ScreenFiltersMenu_AdvancedConfigurationHelper(const ScreenFilter *fil
 
     floatToString(buf, filter->brightness, 2, true);
     Draw_DrawCharacter(10, posY, COLOR_TITLE, pos == offset++ ? '>' : ' ');
-    posY = Draw_DrawFormattedString(30, posY, COLOR_WHITE, "Luminosité :  %13s    \n", buf);
+    posY = Draw_DrawFormattedString(30, posY, COLOR_WHITE, "Luminosite :  %13s    \n", buf);
 
     Draw_DrawCharacter(10, posY, COLOR_TITLE, pos == offset++ ? '>' : ' ');
     posY = Draw_DrawFormattedString(30, posY, COLOR_WHITE, "Permuter :      %13s    \n", filter->invert ? "true" : "false");
@@ -416,17 +416,17 @@ void ScreenFiltersMenu_AdvancedConfiguration(void)
     do
     {
         Draw_Lock();
-        Draw_DrawString(10, 10, COLOR_TITLE, "Menu des filtres d'écran");
+        Draw_DrawString(10, 10, COLOR_TITLE, "Menu des filtres d'ecran");
 
         posY = 30;
         posY = Draw_DrawString(10, posY, COLOR_WHITE, "Utilisez gauche/droite pr augm./diminuer la val. choisie.\n");
         posY = Draw_DrawString(10, posY, COLOR_WHITE, "Maintenez R pour changer la valeur plus vite.\n");
-        posY = Draw_DrawFormattedString(10, posY, COLOR_WHITE, "Mettre à jour les deux écrans : %s (L pour changer)   \n", sync ? "oui" : "non") + SPACING_Y;
+        posY = Draw_DrawFormattedString(10, posY, COLOR_WHITE, "Mettre a jour les deux ecrans : %s (L pour changer)   \n", sync ? "oui" : "non") + SPACING_Y;
 
-        posY = Draw_DrawString(10, posY, COLOR_WHITE, "Écran supérieur :\n");
+        posY = Draw_DrawString(10, posY, COLOR_WHITE, "Ecran superieur :\n");
         posY = ScreenFiltersMenu_AdvancedConfigurationHelper(&topScreenFilter, 0, pos, posY) + SPACING_Y;
 
-        posY = Draw_DrawString(10, posY, COLOR_WHITE, "Écran inférieur :\n");
+        posY = Draw_DrawString(10, posY, COLOR_WHITE, "Ecran inferieur :\n");
         posY = ScreenFiltersMenu_AdvancedConfigurationHelper(&bottomScreenFilter, 5, pos, posY) + SPACING_Y;
 
         input = waitInputWithTimeoutEx(&held, -1);

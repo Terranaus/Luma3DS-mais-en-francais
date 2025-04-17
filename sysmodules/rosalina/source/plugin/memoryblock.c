@@ -77,9 +77,9 @@ Result      MemoryBlock__IsReady(void)
 
     if (R_FAILED(res)) {
         if (isN3DS || (ctx->pluginMemoryStrategy == PLG_STRATEGY_MODE3))
-            PluginLoader__Error("Impossible de mapper la mémoire du plugin.", res);
+            PluginLoader__Error("Impossible de mapper la memoire du plugin.", res);
         else
-            PluginLoader__Error("Un redémarrage de la console est nécessaire\npour fermer les jeux à mémoire étendue.\n\nAppuyez sur [B] pour redémarrer.", res);
+            PluginLoader__Error("Un redemarrage de la console est necessaire\npour fermer les jeux a memoire etendue.\n\nAppuyez sur [B] pour redemarrer.", res);
         svcKernelSetState(7);
     }
     else
@@ -118,7 +118,7 @@ Result      MemoryBlock__Free(void)
     memblock->memblock = NULL;
 
     if (R_FAILED(res))
-        PluginLoader__Error("Impossible de libérer memblock", res);
+        PluginLoader__Error("Impossible de liberer memblock", res);
 
     return res;
 }
@@ -140,12 +140,12 @@ Result      MemoryBlock__ToSwapFile(void)
                     fsMakePath(PATH_ASCII, g_swapFileName), FS_OPEN_RWC);
 
     if (R_FAILED(res)) {
-        PluginLoader__Error("CRITIQUE : Échec de l’ouverture du fichier d’échange.\n\nLa console va maintenant redémarrer.", res);
+        PluginLoader__Error("CRITIQUE : Echec de l’ouverture du fichier d’echange.\n\nLa console va maintenant redemarrer.", res);
         svcKernelSetState(7);
     }
     
     if (!ctx->isSwapFunctionset) {
-        PluginLoader__Error("CRITIQUE : la fonction de sauvegarde d'échange\nn'est pas définie.\n\nLa console va maintenant redémarrer.", res);
+        PluginLoader__Error("CRITIQUE : la fonction de sauvegarde d'echange\nn'est pas definie.\n\nLa console va maintenant redemarrer.", res);
         svcKernelSetState(7);
     }
     ctx->swapLoadChecksum = saveSwapFunc(memblock->memblock, memblock->memblock + g_memBlockSize, g_loadSaveSwapArgs);
@@ -153,7 +153,7 @@ Result      MemoryBlock__ToSwapFile(void)
     res = IFile_Write(&file, &written, memblock->memblock, toWrite, FS_WRITE_FLUSH);
 
     if (R_FAILED(res) || written != toWrite) {
-        PluginLoader__Error("CRITIQUE : Impossible d'écrire l'échange sur la carte SD.\n\nLa console va maintenant redémarrer.", res);
+        PluginLoader__Error("CRITIQUE : Impossible d'ecrire l'echange sur la carte SD.\n\nLa console va maintenant redemarrer.", res);
         svcKernelSetState(7);
     }
 
@@ -174,14 +174,14 @@ Result      MemoryBlock__FromSwapFile(void)
                     fsMakePath(PATH_ASCII, g_swapFileName), FS_OPEN_READ);
 
     if (R_FAILED(res)) {
-        PluginLoader__Error("CRITIQUE : Échec de l’ouverture du fichier d’échange.\n\nLa console va maintenant redémarrer.", res);
+        PluginLoader__Error("CRITIQUE : Echec de l’ouverture du fichier d’echange.\n\nLa console va maintenant redemarrer.", res);
         svcKernelSetState(7);
     }
 
     res = IFile_Read(&file, &read, memblock->memblock, toRead);
 
     if (R_FAILED(res) || read != toRead) {
-        PluginLoader__Error("CRITIQUE : Impossible de lire l'échange à partir de la carte SD.\n\nLa console va maintenant redémarrer.", res);
+        PluginLoader__Error("CRITIQUE : Impossible de lire l'echange a partir de la carte SD.\n\nLa console va maintenant redemarrer.", res);
         svcKernelSetState(7);
     }
     
@@ -190,7 +190,7 @@ Result      MemoryBlock__FromSwapFile(void)
     PluginLoaderContext *ctx = &PluginLoaderCtx;
     if (checksum != ctx->swapLoadChecksum) {
         res = -1;
-        PluginLoader__Error("CRITIQUE : le fichier d'échange est corrompu.\n\nLa console va maintenant redémarrer.", res);
+        PluginLoader__Error("CRITIQUE : le fichier d'echange est corrompu.\n\nLa console va maintenant redemarrer.", res);
         svcKernelSetState(7); 
     }
     
@@ -212,7 +212,7 @@ Result     MemoryBlock__MountInProcess(void)
     // Executable
     if (R_FAILED((res = svcMapProcessMemoryEx(target, 0x07000000, CUR_PROCESS_HANDLE, (u32) memblock->memblock, header->exeSize, isPrivate ? MAPEXFLAGS_PRIVATE : 0))))
     {
-        error->message = "Impossible de mapper le bloc de mémoire exe";
+        error->message = "Impossible de mapper le bloc de memoire exe";
         error->code = res;
         return res;
     }
@@ -220,7 +220,7 @@ Result     MemoryBlock__MountInProcess(void)
     // Heap (to be used by the plugin)
     if (R_FAILED((res = svcMapProcessMemoryEx(target, header->heapVA, CUR_PROCESS_HANDLE, (u32) memblock->memblock + header->exeSize, header->heapSize, isPrivate ? MAPEXFLAGS_PRIVATE : 0))))
     {
-        error->message = "Impossible de mapper le bloc de mémoire du tas";
+        error->message = "Impossible de mapper le bloc de memoire du tas";
         error->code = res;
     }
 

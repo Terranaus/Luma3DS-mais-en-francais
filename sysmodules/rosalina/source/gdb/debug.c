@@ -560,7 +560,7 @@ int GDB_SendStopReply(GDBContext *ctx, const DebugEventInfo *info)
                             const char *kinds[] = { "", "r", "", "a" };
                             WatchpointKind kind = GDB_GetWatchpointKind(ctx, exc.stop_point.fault_information);
                             if(kind == WATCHPOINT_DISABLED)
-                                GDB_SendDebugString(ctx, "Attention : point de surveillance inconnu rencontré !\n");
+                                GDB_SendDebugString(ctx, "Attention : point de surveillance inconnu rencontre !\n");
 
                             GDB_ParseCommonThreadInfo(buffer, ctx, SIGTRAP);
                             return GDB_SendFormattedPacket(ctx, "%s%swatch:%08lx;", buffer, kinds[(u32)kind], exc.stop_point.fault_information);
