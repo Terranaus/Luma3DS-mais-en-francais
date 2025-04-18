@@ -45,8 +45,8 @@
 Menu rosalinaMenu = {
     "Menu Harmonie",
     {
-        { "Capture d'ecran", METHOD, .method = &RosalinaMenu_TakeScreenshot },
-        { "Filtres d'ecran...", MENU, .menu = &screenFiltersMenu },
+        { "Capture d'écran", METHOD, .method = &RosalinaMenu_TakeScreenshot },
+        { "Filtres d'écran...", MENU, .menu = &screenFiltersMenu },
         { "Codes de triche...", METHOD, .method = &RosalinaMenu_Cheats },
         { "", METHOD, .method = PluginLoader__MenuCallback},
         { "Menu New 3DS...", MENU, .menu = &N3DSMenu, .visibility = &menuCheckN3ds },
