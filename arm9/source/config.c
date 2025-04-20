@@ -1,4 +1,4 @@
-P/*
+/*
 *   This file is part of Luma3DS
 *   Copyright (C) 2016-2020 Aurora Wright, TuxSH
 *
