@@ -846,7 +846,7 @@ void configMenu(bool oldPinStatus, u32 oldPinMode)
                                                "( ) Activer le chargement de FIRMs et de modules externes",
                                                "( ) Activer le patch des jeux",
                                                "( ) Rediriger app. threads syscore vers core2",
-                                               "( ) Afficher la chaîne NAND ou utilisateur dans les parametres systeme",
+                                               "( ) Afficher la chaine NAND ou utilisateur dans les parametres systeme",
                                                "( ) Afficher l'ecran de demarrage GBA dans AGB_FIRM corrige",
 
                                                // Should always be the last 2 entries
@@ -874,9 +874,9 @@ void configMenu(bool oldPinStatus, u32 oldPinMode)
                                                  "Activer un verrouillage PIN.\n\n"
                                                  "Le code PIN sera demande a chaque\n"
                                                  "demarrage de Luma3DS boots.\n\n"
-                                                 "4, 6 ou 8 chiffres peuvent être selectionnes.\n\n"
+                                                 "4, 6 ou 8 chiffres peuvent etre selectionnes.\n\n"
                                                  "Les boutons ABXY et les boutons du\n"
-                                                 "pad directionnel peuvent être utilises comme touches.\n\n"
+                                                 "pad directionnel peuvent etre utilises comme touches.\n\n"
                                                  "Un message peut egalement être affiche\n"
                                                  "(consultez le wiki pour les instructions).",
 
@@ -905,7 +905,7 @@ void configMenu(bool oldPinStatus, u32 oldPinMode)
 
                                                  "Activer le chargement de FIRMs externes\n"
                                                  "et de modules systeme.\n\n"
-                                                 "Dans la plupart des cas, ce n’est pas necessaire.\n\n"
+                                                 "Dans la plupart des cas, ce n'est pas necessaire.\n\n"
                                                  "Reportez-vous au wiki pour obtenir des instructions.",
 
                                                  "Activez le remplacement de la configuration\n"
@@ -919,7 +919,7 @@ void configMenu(bool oldPinStatus, u32 oldPinMode)
 
                                                  "Redirige les threads d'application qui\n"
                                                  "seraient generes sur core1 vers core2\n"
-                                                 "(qui est un cœur de processeur supplementaire pour\n"
+                                                 "(qui est un coeur de processeur supplementaire pour\n"
                                                  "les applications qui reste generalement inutilise).\n\n"
                                                  "This improves the performance of very\n"
                                                  "demanding games (like Pok\x82mon US/UM)\n" // CP437
@@ -930,7 +930,7 @@ void configMenu(bool oldPinStatus, u32 oldPinMode)
                                                  "\t* Sys  = SysNAND\n"
                                                  "\t* Emu  = EmuNAND 1\n"
                                                  "\t* EmuX = EmuNAND X\n\n"
-                                                 "ou une chaîne personnalisee definie par l'utilisateur\n"
+                                                 "ou une chaine personnalisee definie par l'utilisateur\n"
                                                  "dans les parametres systeme.\n\n"
                                                  "Reportez-vous au wiki pour obtenir des instructions.",
 
@@ -938,7 +938,7 @@ void configMenu(bool oldPinStatus, u32 oldPinMode)
                                                  "lors du demarrage des jeux GBA.",
 
                                                 // Doit toujours être les 2 dernieres entrees
-                                                "Demarrez dans le menu du chargeur de chaîne Luma3DS.",
+                                                "Demarrez dans le menu du chargeur de chaine Luma3DS.",
 
                                                  "Enregistrez les modifications et quittez. Pour\n"
                                                  "annuler les modifications, appuyez sur le bouton POWER.\n"
