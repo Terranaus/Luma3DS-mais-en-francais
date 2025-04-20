@@ -850,7 +850,7 @@ void configMenu(bool oldPinStatus, u32 oldPinMode)
                                                "( ) Afficher l'ecran de demarrage GBA dans AGB_FIRM corrige",
 
                                                // Should always be the last 2 entries
-                                               "\nDemarrer le chargeur a chaîne",
+                                               "\nDemarrer le chargeur a chaine",
                                                "Sauvegarder et quitter"
                                              };
 
