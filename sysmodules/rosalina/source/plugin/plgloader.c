@@ -86,8 +86,8 @@ void        PluginLoader__UpdateMenu(void)
 {
     static const char *status[2] =
     {
-        "Chargeur de plugins : [Desactive]",
-        "Chargeur de plugins : [Active]"
+        "Chargeur de plugins : [Desactive]",
+        "Chargeur de plugins : [Active]"
     };
 
     rosalinaMenu.items[3].title = status[PluginLoaderCtx.isEnabled];
