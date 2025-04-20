@@ -1,4 +1,4 @@
-/*
+P/*
 *   This file is part of Luma3DS
 *   Copyright (C) 2016-2020 Aurora Wright, TuxSH
 *
@@ -837,7 +837,7 @@ void configMenu(bool oldPinStatus, u32 oldPinMode)
     static const char *multiOptionsText[]  = { "EmuNAND par defaut : 1( ) 2( ) 3( ) 4( )",
                                                "Luminosite de l'ecran : 4( ) 3( ) 2( ) 1( )",
                                                "Ecran de demarrage : Non( ) Avant( ) Apres( ) payloads",
-                                               "Verrouillage du PIN : Non( ) 4( ) 6( ) 8( ) chiffres",
+                                               "Code PIN : Non( ) 4( ) 6( ) 8( ) chiffres",
                                                "New 3DS CPU : Non( ) Clock( ) L2( ) Clock+L2( )",
                                                "Hbmenu demarrage automatique : Non( ) 3DS( ) DSi( )",
                                              };
