@@ -37,8 +37,8 @@
 Menu sysconfigMenu = {
     "Menu de configuration du systeme",
     {
-        { "Contrôler le volume", METHOD, .method=&SysConfigMenu_AdjustVolume},
-        { "Contrôler la connexion sans fil", METHOD, .method = &SysConfigMenu_ControlWifi },
+        { "Controler le volume", METHOD, .method=&SysConfigMenu_AdjustVolume},
+        { "Controler la connexion sans fil", METHOD, .method = &SysConfigMenu_ControlWifi },
         { "Activer/desactiver les LED", METHOD, .method = &SysConfigMenu_ToggleLEDs },
         { "Activer/desactiver sans fil", METHOD, .method = &SysConfigMenu_ToggleWireless },
         { "Activer/desactiver le bouton POWER", METHOD, .method=&SysConfigMenu_TogglePowerButton },
@@ -65,7 +65,7 @@ void SysConfigMenu_ToggleLEDs(void)
         Draw_DrawString(10, 30, COLOR_WHITE, "Appuyez sur A pour changer, appuyez sur B pour annumer.");
         Draw_DrawString(10, 50, COLOR_RED, "ATTENTION :");
         Draw_DrawString(10, 60, COLOR_WHITE, "  * Le mode veille reinitialise l'etat des LED !");
-        Draw_DrawString(10, 70, COLOR_WHITE, "  * Etat des LED inchangeable si la batterie est faible !");
+        Draw_DrawString(10, 70, COLOR_WHITE, "  * Etat des LED inchangeable si la batterie est faible !");
 
         Draw_FlushFramebuffer();
         Draw_Unlock();
@@ -106,13 +106,13 @@ void SysConfigMenu_ToggleWireless(void)
 
         if(nwmRunning)
         {
-            Draw_DrawString(10, 50, COLOR_WHITE, "Statut actuel :");
-            Draw_DrawString(100, 50, (wireless ? COLOR_GREEN : COLOR_RED), (wireless ? " MARCHE " : " ARRÊT"));
+            Draw_DrawString(10, 50, COLOR_WHITE, "Statut actuel :");
+            Draw_DrawString(100, 50, (wireless ? COLOR_GREEN : COLOR_RED), (wireless ? " MARCHE " : " ARRET"));
         }
         else
         {
             Draw_DrawString(10, 50, COLOR_RED, "NWM ne fonctionne pas.");
-            Draw_DrawString(10, 60, COLOR_RED, "Si vous êtes actuellement dans le menu test,");
+            Draw_DrawString(10, 60, COLOR_RED, "Si vous etes actuellement dans le menu test,");
             Draw_DrawString(10, 70, COLOR_RED, "quittez puis appuyez sur R+DROITE pour changer le WiFi.");
             Draw_DrawString(10, 80, COLOR_RED, "Sinon, sortez simplement et attendez quelques secondes.");
         }
@@ -140,7 +140,7 @@ void SysConfigMenu_UpdateStatus(bool control)
 
     if(control)
     {
-        item->title = "Contrôler la connexion sans fil";
+        item->title = "Controler la connexion sans fil";
         item->method = &SysConfigMenu_ControlWifi;
     }
     else
@@ -186,7 +186,7 @@ static bool SysConfigMenu_ForceWifiConnection(u32 slot)
     char infoString[80] = {0};
     u32 infoStringColor = forcedConnection ? COLOR_GREEN : COLOR_RED;
     if(forcedConnection)
-        sprintf(infoString, "Connexion forcee avec succes a : %s", ssid);
+        sprintf(infoString, "Connexion forcee avec succes a : %s", ssid);
     else
        sprintf(infoString, "Echec de la connexion a l'emplacement %d", (int)slot + 1);
 
@@ -234,7 +234,7 @@ void SysConfigMenu_TogglePowerButton(void)
         Draw_DrawString(10, 10, COLOR_TITLE, "Menu de configuration du systeme");
         Draw_DrawString(10, 30, COLOR_WHITE, "Appuyez sur A pour basculer, appuyez sur B pour annuler.");
 
-        Draw_DrawString(10, 50, COLOR_WHITE, "Statut actuel :");
+        Draw_DrawString(10, 50, COLOR_WHITE, "Statut actuel :");
         Draw_DrawString(100, 50, (((mcuIRQMask & 0x00000001) == 0x00000001) ? COLOR_RED : COLOR_GREEN), (((mcuIRQMask & 0x00000001) == 0x00000001) ? " DESACTIVE" : " ACTIVE "));
 
         Draw_FlushFramebuffer();
@@ -335,7 +335,7 @@ void SysConfigMenu_DisableForcedWifiConnection(void)
     {
         Draw_Lock();
         Draw_DrawString(10, 10, COLOR_TITLE, "Menu de configuration du systeme");
-        Draw_DrawString(10, 30, COLOR_WHITE, "Connexion forcee desactivee avec succes.\nRemarque : la connexion automatique peut rester interrompue.");
+        Draw_DrawString(10, 30, COLOR_WHITE, "Connexion forcee desactivee avec succes.\nRemarque : la connexion automatique peut rester interrompue.");
 
         u32 pressed = waitInputWithTimeout(1000);
         if(pressed & KEY_B)
@@ -363,7 +363,7 @@ void SysConfigMenu_ToggleCardIfPower(void)
         Draw_DrawString(10, 10, COLOR_TITLE, "Menu de configuration du systeme");
         u32 posY = Draw_DrawString(10, 30, COLOR_WHITE, "Appuyez sur A pour basculer, appuyez sur B pour annuler.\n\n");
         posY = Draw_DrawString(10, posY, COLOR_WHITE, "Inserer ou retirer une carte reinitialisera le statut\net vous devrez reinserer une carte si\nvous souhaitez y jouer.\n\n");
-        Draw_DrawString(10, posY, COLOR_WHITE, "Statut actuel :");
+        Draw_DrawString(10, posY, COLOR_WHITE, "Statut actuel :");
         Draw_DrawString(100, posY, !cardIfStatus ? COLOR_RED : COLOR_GREEN, !cardIfStatus ? " DESACTIVE" : " ACTIVE ");
 
         Draw_FlushFramebuffer();
@@ -468,7 +468,7 @@ void SysConfigMenu_AdjustVolume(void)
     {
         Draw_Lock();
         Draw_DrawString(10, 10, COLOR_TITLE, "Menu de configuration du systeme");
-        u32 posY = Draw_DrawString(10, 30, COLOR_WHITE, "Y : Activer/desactiver le curseur de volume.\nManette +/Pad circulaire : Regler niv. volume.\nA: Appliquer\nB : Retour\n\n");
+        u32 posY = Draw_DrawString(10, 30, COLOR_WHITE, "Y : Activer/desactiver le curseur de volume.\nManette +/Pad circulaire : Regler niv. volume.\nA: Appliquer\nB : Retour\n\n");
         Draw_DrawString(10, posY, COLOR_WHITE, "Current status:");
         posY = Draw_DrawString(100, posY, (tempVolumeOverride == -1) ? COLOR_RED : COLOR_GREEN, (tempVolumeOverride == -1) ? " DESACTIVE" : " ACTIVE ");
         if (tempVolumeOverride != -1) {
@@ -556,7 +556,7 @@ void SysConfigMenu_ChangeScreenBrightness(void)
             minLum,
             maxLum
         );
-        posY = Draw_DrawString(10, posY, COLOR_WHITE, "Contrôles :\nHaut/Bas pour +-1\nDroite/Gauche pour +-10.\n");
+        posY = Draw_DrawString(10, posY, COLOR_WHITE, "Controles :\nHaut/Bas pour +-1\nDroite/Gauche pour +-10.\n");
         posY = Draw_DrawString(10, posY, COLOR_WHITE, "Appuyez sur A pour commencer, B pour quitter.\n\n");
 
         posY = Draw_DrawString(10, posY, COLOR_RED, "ATTENTION : \n");

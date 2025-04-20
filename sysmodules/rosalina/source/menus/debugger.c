@@ -41,7 +41,7 @@ Menu debuggerMenu = {
     {
         { "Activer le debogueur",                        METHOD, .method = &DebuggerMenu_EnableDebugger  },
         { "Desactiver le debogueur",                       METHOD, .method = &DebuggerMenu_DisableDebugger },
-        { "Forcer le debogage de l'application suivante au lancement", METHOD, .method = &DebuggerMenu_DebugNextApplicationByForce },
+        { "Forcer le debogage de l'application suivante a son lancement", METHOD, .method = &DebuggerMenu_DebugNextApplicationByForce },
         {},
     }
 };

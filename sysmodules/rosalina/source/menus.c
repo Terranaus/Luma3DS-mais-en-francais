@@ -45,8 +45,8 @@
 Menu rosalinaMenu = {
     "Menu Harmonie",
     {
-        { "Capture d'écran", METHOD, .method = &RosalinaMenu_TakeScreenshot },
-        { "Filtres d'écran...", MENU, .menu = &screenFiltersMenu },
+        { "Capture d'ecran", METHOD, .method = &RosalinaMenu_TakeScreenshot },
+        { "Filtres d'ecran...", MENU, .menu = &screenFiltersMenu },
         { "Codes de triche...", METHOD, .method = &RosalinaMenu_Cheats },
         { "", METHOD, .method = PluginLoader__MenuCallback},
         { "Menu New 3DS...", MENU, .menu = &N3DSMenu, .visibility = &menuCheckN3ds },
@@ -143,11 +143,11 @@ void RosalinaMenu_ShowSystemInfo(void)
 
         if (areScreenTypesInitialized)
         {
-            posY = Draw_DrawFormattedString(10, posY, COLOR_WHITE, "Type d'ecran superieur :     %s\n", topScreenType);
-            posY = Draw_DrawFormattedString(10, posY, COLOR_WHITE, "Type d'ecran inferieur :     %s\n\n", bottomScreenType);
+            posY = Draw_DrawFormattedString(10, posY, COLOR_WHITE, "Type d'ecran superieur :     %s\n", topScreenType);
+            posY = Draw_DrawFormattedString(10, posY, COLOR_WHITE, "Type d'ecran inferieur :     %s\n\n", bottomScreenType);
         }
 
-        posY = Draw_DrawFormattedString(10, posY, COLOR_WHITE, "Version du noyau :          %lu.%lu-%lu\n\n", GET_VERSION_MAJOR(kver), GET_VERSION_MINOR(kver), GET_VERSION_REVISION(kver));
+        posY = Draw_DrawFormattedString(10, posY, COLOR_WHITE, "Version du noyau :          %lu.%lu-%lu\n\n", GET_VERSION_MAJOR(kver), GET_VERSION_MINOR(kver), GET_VERSION_REVISION(kver));
         if (mcuFwVersion != 0 && mcuInfoTableRead)
         {
             posY = Draw_DrawFormattedString(10, posY, COLOR_WHITE, "Version MCU FW :             %lu.%lu\n", GET_VERSION_MAJOR(mcuFwVersion), GET_VERSION_MINOR(mcuFwVersion));

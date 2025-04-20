@@ -69,7 +69,7 @@ Menu miscellaneousMenu = {
     {
         { "Changez le titre hb. sur l'application actuelle.", METHOD, .method = &MiscellaneousMenu_SwitchBoot3dsxTargetTitle },
         { "Changer la combinaison de menus", METHOD, .method = &MiscellaneousMenu_ChangeMenuCombo },
-        { "Demarrer la redirection d’entree", METHOD, .method = &MiscellaneousMenu_InputRedirection },
+        { "Demarrer la redirection d'entree", METHOD, .method = &MiscellaneousMenu_InputRedirection },
         { "Mettre a jour l'heure et la date via NTP", METHOD, .method = &MiscellaneousMenu_UpdateTimeDateNtp },
         { "Annuler le decalage horaire de l'utilisateur", METHOD, .method = &MiscellaneousMenu_NullifyUserTimeOffset },
         { "Dump le firmware DSP", METHOD, .method = &MiscellaneousMenu_DumpDspFirm },
@@ -201,7 +201,7 @@ void MiscellaneousMenu_InputRedirection(void)
     {
         res = InputRedirection_Disable(5 * 1000 * 1000 * 1000LL);
         if(res != 0)
-            sprintf(buf, "Impossible d'arrêter InputRedirection (0x%08lx).", (u32)res);
+            sprintf(buf, "Impossible d'arreter InputRedirection (0x%08lx).", (u32)res);
         else
             miscellaneousMenu.items[2].title = "Demarrer InputRedirection";
     }
