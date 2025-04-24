@@ -12,17 +12,17 @@
 **Luma3DS** Luma3DS corrige et réimplémente des parties importantes du logiciel système de tous les modèles de la famille Nintendo 3DS. Il vise à améliorer considérablement l'expérience utilisateur et à assurer la compatibilité de la 3DS bien au-delà de sa fin de vie. Parmi les fonctionnalités proposées :
 
 * **Support de première classe pour les applications homebrew**
-* **Rosalina**, an overlay menu (triggered by <kbd>L+Down+Select</kbd> by default), allowing things like:
-    * Taking screenshots while in game
-    * Blue light filters and other screen filters
-    * Input redirection to play with external devices, such as controllers
-    * Using cheat codes
-    * Setting time and date accurately from the network (NTP)
-    * ... and much more!
-* **Many game modding features**, such as, but not limited to:
-    * Game plugins (in 3GX format)
-    * Per-game language overrides ("locale emulation")
-    * Asset content path redirection ("LayeredFS")
+* **Harmonie**, un menu sperposé (accessible par <kbd>L+Bas+Select</kbd> par défaut), permet des choses comme :
+    * Prendre des captures d'écran de n'importe quel jeu
+    * Différents filtres d'écran comme celui pour les lumières bleue
+    * Redirection d'entrée pour jouer avec des périphériques externes, tels que des contrôleurs
+    * Utiliser des codes de triche
+    * Réglage précis de l'heure et de la date à partir du réseau (NTP)
+    * ... et bien plus encore !
+* **De nombreuses fonctionnalités de modding**, sans limite :
+    * Plugins de jeux (au format 3GX)
+    * Remplacements de langue par jeu ("emulation locale")
+    * Redirection du chemin du contenu des ressources ("LayeredFS")
 * **Support for user-provided patches and/or full "system modules" replacements**, an essential feature for Nintendo Network replacements (amongst other projects)
 * A **fully-fledged GDB stub**, allowing homebrew developers and reverse-engineers alike to work much more efficiently
 * Ability to chainload other firmware files, including other versions of itself
